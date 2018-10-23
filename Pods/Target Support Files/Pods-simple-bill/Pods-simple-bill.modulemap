@@ -1,0 +1,6 @@
+framework module Pods_simple_bill {
+  umbrella header "Pods-simple-bill-umbrella.h"
+
+  export *
+  module * { export * }
+}
