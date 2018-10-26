@@ -29,6 +29,7 @@
 		35FE1E61216AF2DF00488071 /* simple_billUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 35FE1E60216AF2DF00488071 /* simple_billUITests.m */; };
 		9E33F35613FFFCDCF48D204F /* Pods_simple_bill.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC1CC5A48EF69F568225CD29 /* Pods_simple_bill.framework */; };
 		B3F1521E5CECAA61E171351E /* Pods_simple_billUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3C4DC0C3AE118FD639CB2FE /* Pods_simple_billUITests.framework */; };
+		B737A8502181A52500EE776C /* HttpTools.m in Sources */ = {isa = PBXBuildFile; fileRef = B737A84F2181A52500EE776C /* HttpTools.m */; };
 		EE97C26D44DD4B0D374E166A /* Pods_simple_billTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76634F35C9362ABFE2F4A47E /* Pods_simple_billTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +97,8 @@
 		76634F35C9362ABFE2F4A47E /* Pods_simple_billTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_simple_billTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C4B05E5C04F3ACBA4493940 /* Pods-simple-billUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-simple-billUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-simple-billUITests/Pods-simple-billUITests.release.xcconfig"; sourceTree = "<group>"; };
 		97F8D8ABFB438B125808CF45 /* Pods-simple-bill.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-simple-bill.debug.xcconfig"; path = "Pods/Target Support Files/Pods-simple-bill/Pods-simple-bill.debug.xcconfig"; sourceTree = "<group>"; };
+		B737A84E2181A52500EE776C /* HttpTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpTools.h; sourceTree = "<group>"; };
+		B737A84F2181A52500EE776C /* HttpTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpTools.m; sourceTree = "<group>"; };
 		CC1CC5A48EF69F568225CD29 /* Pods_simple_bill.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_simple_bill.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E02050E6C4F04A2EF7799B95 /* Pods-simple-billTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-simple-billTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-simple-billTests/Pods-simple-billTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F3C4DC0C3AE118FD639CB2FE /* Pods_simple_billUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_simple_billUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -313,6 +316,8 @@
 				35231140216C3D7F00D277E5 /* BaseViewController.m */,
 				35231142216C3D9E00D277E5 /* BaseNavigationController.h */,
 				35231143216C3D9E00D277E5 /* BaseNavigationController.m */,
+				B737A84E2181A52500EE776C /* HttpTools.h */,
+				B737A84F2181A52500EE776C /* HttpTools.m */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -678,6 +683,7 @@
 				3530B80D217DCC9F008E6743 /* DetailedCell.m in Sources */,
 				35231150216C3E0900D277E5 /* DiscoveredController.m in Sources */,
 				35AE8FCF216B0C6500249E40 /* MBProgressHUD+Extension.m in Sources */,
+				B737A8502181A52500EE776C /* HttpTools.m in Sources */,
 				35231147216C3DB600D277E5 /* DetailedController.m in Sources */,
 				35231153216C3E1C00D277E5 /* MyController.m in Sources */,
 				35FE1E4C216AF2DF00488071 /* main.m in Sources */,
