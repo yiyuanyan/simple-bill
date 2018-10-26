@@ -29,6 +29,8 @@
     [self setDetailedTopInfoView];
     //tableView
     [self initTableView];
+    //获取网络数据
+    [self GetHttpInfo:@"http://yiyuanyan.eicp.net:81/detailed/2018-6"];
     
     
 }
@@ -113,7 +115,22 @@
     self.currentMonth = [NSString stringWithFormat:@"%ld",(long)[d month]];
     self.currentDay = [NSString stringWithFormat:@"%ld",(long)[d day]];
 }
-
+#pragma mark --请求网络数据
+-(void)GetHttpInfo:(NSString *)url {
+    [MBProgressHUD showLoading:self.view title:@"Loading..."];
+    [HttpTools GetHttpDataWithUrlStr:url
+                        SuccessBlock:^(id  _Nonnull responseObject) {
+                            NSDictionary *data = responseObject[@"data"];
+                            //收入
+                            self.detailedTopInfoView.incomeString = [NSString stringWithFormat:@"%@",data[@"income"]];
+                            //支出
+                            self.detailedTopInfoView.expenditureString = [NSString stringWithFormat:@"%@",data[@"expenditure"]];
+                            NSLog(@"%@", data);
+                            [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        } FailedBlock:^(id  _Nonnull error) {
+                            [MBProgressHUD showMessage:@"加载出错" toView:self.view];
+                        }];
+}
 
 
 @end
