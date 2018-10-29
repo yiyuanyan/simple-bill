@@ -30,7 +30,7 @@
     //tableView
     [self initTableView];
     //获取网络数据
-    [self GetHttpInfo:@"http://yiyuanyan.eicp.net:81/detailed/2018-6"];
+    [self GetHttpInfo:@"http://yiyuanyan.eicp.net:81/detailed/2018-10"];
     
     
 }
@@ -120,16 +120,20 @@
     [MBProgressHUD showLoading:self.view title:@"Loading..."];
     [HttpTools GetHttpDataWithUrlStr:url
                         SuccessBlock:^(id  _Nonnull responseObject) {
-                            NSDictionary *data = responseObject[@"data"];
-                            //收入
-                            self.detailedTopInfoView.incomeString = [NSString stringWithFormat:@"%@",data[@"income"]];
-                            //支出
-                            self.detailedTopInfoView.expenditureString = [NSString stringWithFormat:@"%@",data[@"expenditure"]];
-                            NSLog(@"%@", data);
-                            [MBProgressHUD hideHUDForView:self.view animated:YES];
+                            if (responseObject[@"data"] != nil && ![responseObject[@"data"] isKindOfClass:[NSNull class]] && [responseObject[@"data"] count] != 0){
+                                
+                                
+                            }else{
+                                [MBProgressHUD hideHUDForView:self.view animated:NO];
+                                [MBProgressHUD showMessage:@"本月没有数据" toView:self.view];
+                            }
+                            
+                            
                         } FailedBlock:^(id  _Nonnull error) {
+                            [MBProgressHUD hideHUDForView:self.view animated:YES];
                             [MBProgressHUD showMessage:@"加载出错" toView:self.view];
                         }];
+    
 }
 
 
