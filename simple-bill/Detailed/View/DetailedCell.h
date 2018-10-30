@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DetailedCellModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DetailedCell : UITableViewCell
-
+@property(nonatomic, strong) DetailedCellModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

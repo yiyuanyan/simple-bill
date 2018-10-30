@@ -7,7 +7,11 @@
 //
 
 #import "DetailedCell.h"
-
+@interface DetailedCell()
+@property(nonatomic, strong) UIImageView *iconView;
+@property(nonatomic, strong) UILabel *cateLabel;
+@property(nonatomic, strong) UILabel *moneyLabel;
+@end
 @implementation DetailedCell
 
 - (void)awakeFromNib {
@@ -37,17 +41,42 @@
         make.height.mas_equalTo(1);
         make.bottom.equalTo(self.mas_bottom).offset(0);
     }];
-    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"电器_"]];
-//    imgView.backgroundColor = UICOLOR_FROM_HEX(0xf9db61);
-//    //设置圆角
-//    imgView.layer.cornerRadius = 6;
-//    //将多余的部分切掉
-//    imgView.layer.masksToBounds = YES;
-    [self addSubview:imgView];
-    [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.iconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"dianqi"]];
+    [self addSubview:self.iconView];
+    [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.width.mas_equalTo(30);
         make.centerY.equalTo(self.mas_centerY);
         make.left.equalTo(self.mas_left).offset(20);
     }];
+    self.cateLabel = [UILabel new];
+    self.cateLabel.font = Font(14);
+    self.cateLabel.textColor = UICOLOR_FROM_HEX(0x000000);
+    [self addSubview:self.cateLabel];
+    [self.cateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.iconView.mas_right).offset(20);
+        make.centerY.equalTo(self.mas_centerY);
+        make.height.mas_equalTo(18);
+    }];
+    
+    self.moneyLabel = [UILabel new];
+    self.moneyLabel.font = Font(14);
+    self.moneyLabel.textColor = UICOLOR_FROM_HEX(0x999999);
+    [self addSubview:self.moneyLabel];
+    [self.moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.mas_right).offset(-20);
+        make.centerY.equalTo(self.mas_centerY);
+        make.height.mas_equalTo(18);
+    }];
+}
+-(void)setModel:(DetailedCellModel *)model {
+    if(!IsStrEmpty(model.thumb)){
+        NSURL *imgURL = [NSURL URLWithString:model.thumb];
+        [self.imageView sd_setImageWithURL:imgURL];
+    }else{
+        self.iconView.image = [UIImage imageNamed:model.en_name];
+    }
+    self.cateLabel.text = model.name;
+    self.moneyLabel.text = [NSString stringWithFormat:@"%@",model.money];
+    
 }
 @end

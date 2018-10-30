@@ -45,6 +45,7 @@
 
 #pragma mark 只设置文字提醒框
 + (MBProgressHUD *)showMessage:(NSString *)message toView:(UIView *)view {
+    [MBProgressHUD hideHUDForView:view];
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
     
     //可以改变文字提醒框的大小

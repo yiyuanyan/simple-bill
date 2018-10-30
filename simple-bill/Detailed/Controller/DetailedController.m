@@ -10,12 +10,15 @@
 #import "DetailedTopInfoView.h"
 #import "DetailedCell.h"
 #import "DetailedTableHeaderView.h"
+#import "DetailedCellModel.h"
 @interface DetailedController ()<UITableViewDelegate, UITableViewDataSource>
 @property(nonatomic, strong) DetailedTopInfoView *detailedTopInfoView;
 @property(nonatomic, strong) NSString *currentYear;  //当前年份
 @property(nonatomic, strong) NSString *currentMonth; //当前月份
 @property(nonatomic, strong) NSString *currentDay;  //当前天
 @property(nonatomic, strong) UITableView *tableView;
+@property(nonatomic, strong) NSArray *tableHeaderArray;  //tableHeader数据
+@property(nonatomic, strong) NSArray *cellData;  //cell数据
 @end
 
 @implementation DetailedController
@@ -75,12 +78,14 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    //NSLog(@"%@",self.cellData[section]);
+    
+    return [self.cellData[section] count];
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     DetailedTableHeaderView *view = [[DetailedTableHeaderView alloc] init];
-    view.dateString = @"10月08日  星期一";
+    view.dateString = [NSString stringWithFormat:@"%@",self.tableHeaderArray[section]];
     view.totalExpenditureString = @"1238";
     return view;
     
@@ -102,6 +107,7 @@
     if(!cell){
         cell = [[DetailedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellString];
     }
+    cell.model = self.cellData[indexPath.section][indexPath.row];
     return cell;
 }
 
@@ -120,17 +126,34 @@
     [MBProgressHUD showLoading:self.view title:@"Loading..."];
     [HttpTools GetHttpDataWithUrlStr:url
                         SuccessBlock:^(id  _Nonnull responseObject) {
-                            if (responseObject[@"data"] != nil && ![responseObject[@"data"] isKindOfClass:[NSNull class]] && [responseObject[@"data"] count] != 0){
+                            if (!IsArrEmpty(responseObject[@"data"])){
+                                self.detailedTopInfoView.incomeString = [NSString stringWithFormat:@"%@",responseObject[@"income"]];
+                                self.detailedTopInfoView.expenditureString = [NSString stringWithFormat:@"%@",responseObject[@"expenditure"]];
+                                NSMutableArray *mHeaderArray = [NSMutableArray array];
+                                NSMutableArray *dataArray = [NSMutableArray array];
+                                for (NSDictionary *bigDic in responseObject[@"data"]) {
+                                    [mHeaderArray addObject:bigDic[@"acc_date"]];
+                                    NSMutableArray *dataArray2 = [NSMutableArray array];
+                                    for (NSDictionary *smallDic in bigDic[@"info"]) {
+                                        DetailedCellModel *model = [DetailedCellModel yy_modelWithJSON:smallDic];
+                                        [dataArray2 addObject:model];
+                                        
+                                    }
+                                    [dataArray addObject:dataArray2];
+                                }
+                                self.cellData = dataArray;
+                                self.tableHeaderArray = mHeaderArray;
                                 
-                                
+                                [self.tableView reloadData];
+                                [MBProgressHUD hideHUDForView:self.view animated:YES];
                             }else{
-                                [MBProgressHUD hideHUDForView:self.view animated:NO];
+                                //[MBProgressHUD hideHUDForView:self.view animated:NO];
                                 [MBProgressHUD showMessage:@"本月没有数据" toView:self.view];
                             }
                             
                             
                         } FailedBlock:^(id  _Nonnull error) {
-                            [MBProgressHUD hideHUDForView:self.view animated:YES];
+                            //[MBProgressHUD hideHUDForView:self.view animated:YES];
                             [MBProgressHUD showMessage:@"加载出错" toView:self.view];
                         }];
     

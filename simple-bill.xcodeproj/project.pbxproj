@@ -20,6 +20,7 @@
 		35AE8FCF216B0C6500249E40 /* MBProgressHUD+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AE8FCC216B0C6500249E40 /* MBProgressHUD+Extension.m */; };
 		35AE8FD0216B0C6500249E40 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 35AE8FCD216B0C6500249E40 /* MBProgressHUD.bundle */; };
 		35AE8FD4216B107B00249E40 /* BaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AE8FD3216B107B00249E40 /* BaseTabBarController.m */; };
+		35DCD6182186ED1E0011A501 /* DetailedCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DCD6172186ED1E0011A501 /* DetailedCellModel.m */; };
 		35FE1E3E216AF2DE00488071 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35FE1E3D216AF2DE00488071 /* AppDelegate.m */; };
 		35FE1E44216AF2DE00488071 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35FE1E42216AF2DE00488071 /* Main.storyboard */; };
 		35FE1E46216AF2DF00488071 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35FE1E45216AF2DF00488071 /* Assets.xcassets */; };
@@ -77,6 +78,8 @@
 		35AE8FD1216B0F8A00249E40 /* AppInformation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppInformation.h; sourceTree = "<group>"; };
 		35AE8FD2216B107B00249E40 /* BaseTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTabBarController.h; sourceTree = "<group>"; };
 		35AE8FD3216B107B00249E40 /* BaseTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTabBarController.m; sourceTree = "<group>"; };
+		35DCD6162186ED1E0011A501 /* DetailedCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailedCellModel.h; sourceTree = "<group>"; };
+		35DCD6172186ED1E0011A501 /* DetailedCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailedCellModel.m; sourceTree = "<group>"; };
 		35EE6E1D216B089F00AC3718 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		35FE1E39216AF2DE00488071 /* simple-bill.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "simple-bill.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35FE1E3C216AF2DE00488071 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -287,6 +290,8 @@
 		3523113D216C3D1C00D277E5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				35DCD6162186ED1E0011A501 /* DetailedCellModel.h */,
+				35DCD6172186ED1E0011A501 /* DetailedCellModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -685,6 +690,7 @@
 				35AE8FCF216B0C6500249E40 /* MBProgressHUD+Extension.m in Sources */,
 				B737A8502181A52500EE776C /* HttpTools.m in Sources */,
 				35231147216C3DB600D277E5 /* DetailedController.m in Sources */,
+				35DCD6182186ED1E0011A501 /* DetailedCellModel.m in Sources */,
 				35231153216C3E1C00D277E5 /* MyController.m in Sources */,
 				35FE1E4C216AF2DF00488071 /* main.m in Sources */,
 				352D5FD6217982E5000664A9 /* DetailedTopInfoView.m in Sources */,
