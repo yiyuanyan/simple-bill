@@ -131,8 +131,16 @@
                                 self.detailedTopInfoView.expenditureString = [NSString stringWithFormat:@"%@",responseObject[@"expenditure"]];
                                 NSMutableArray *mHeaderArray = [NSMutableArray array];
                                 NSMutableArray *dataArray = [NSMutableArray array];
+                                
                                 for (NSDictionary *bigDic in responseObject[@"data"]) {
-                                    [mHeaderArray addObject:bigDic[@"acc_date"]];
+                                    //便利HeaderView数据
+                                    NSMutableArray *mHeaderArray2 = [NSMutableArray array];
+                                    for (NSDictionary *headDic in bigDic[@"headerInfo"]) {
+                                        NSLog(@"%@",headDic);
+                                        [mHeaderArray2 addObject:headDic];
+                                    }
+                                    [mHeaderArray addObject:mHeaderArray2];
+                                    //便利cell数据
                                     NSMutableArray *dataArray2 = [NSMutableArray array];
                                     for (NSDictionary *smallDic in bigDic[@"info"]) {
                                         DetailedCellModel *model = [DetailedCellModel yy_modelWithJSON:smallDic];
@@ -143,6 +151,7 @@
                                 }
                                 self.cellData = dataArray;
                                 self.tableHeaderArray = mHeaderArray;
+                                NSLog(@"%@",mHeaderArray);
                                 
                                 [self.tableView reloadData];
                                 [MBProgressHUD hideHUDForView:self.view animated:YES];
