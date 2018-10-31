@@ -40,15 +40,37 @@
         make.height.mas_equalTo(38);
     }];
     //支出title
-    UILabel *totalExpenditureTitleLabel = [UILabel new];
-    totalExpenditureTitleLabel.font = Font(12);
-    totalExpenditureTitleLabel.textColor = UICOLOR_FROM_HEX(0x999999);
-    totalExpenditureTitleLabel.text = @"支出：";
-    [self addSubview:totalExpenditureTitleLabel];
+    self.totalExpenditureTitleLabel = [UILabel new];
+    self.totalExpenditureTitleLabel.font = Font(12);
+    self.totalExpenditureTitleLabel.textColor = UICOLOR_FROM_HEX(0x999999);
+    self.totalExpenditureTitleLabel.text = @"支出：";
+    [self addSubview:self.totalExpenditureTitleLabel];
     
-    [totalExpenditureTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.totalExpenditureTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.mas_centerY);
         make.right.equalTo(self.totalExpenditureLabel.mas_left).offset(0);
+        make.height.mas_equalTo(38);
+    }];
+    //收入
+    self.totalIncomeLabel = [UILabel new];
+    self.totalIncomeLabel.text = @"";
+    self.totalIncomeLabel.font = Font(12);
+    [self addSubview:self.totalIncomeLabel];
+    [self.totalIncomeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.mas_right).offset(-20);
+        make.centerY.equalTo(self.mas_centerY);
+        make.height.mas_equalTo(38);
+    }];
+    //收入title
+    self.totalIncomeTitleLabel = [UILabel new];
+    self.totalIncomeTitleLabel.font = Font(12);
+    self.totalIncomeTitleLabel.textColor = UICOLOR_FROM_HEX(0x999999);
+    self.totalIncomeTitleLabel.text = @"支出：";
+    [self addSubview:self.totalIncomeTitleLabel];
+    
+    [self.totalIncomeTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.mas_centerY);
+        make.right.equalTo(self.totalIncomeLabel.mas_left).offset(0);
         make.height.mas_equalTo(38);
     }];
     
@@ -57,12 +79,29 @@
 -(void)setDateString:(NSString *)dateString
 {
     self.dateLabel.font = Font(12);
-    self.dateLabel.text = dateString;
+    NSString *str2 = [dateString substringFromIndex:5];
+    self.dateLabel.text = str2;
     self.dateLabel.textColor = UICOLOR_FROM_HEX(0x999999);
 }
 -(void)setTotalExpenditureString:(NSString *)totalExpenditureString {
+    self.totalExpenditureString = totalExpenditureString;
     self.totalExpenditureLabel.font = Font(12);
     self.totalExpenditureLabel.textColor = UICOLOR_FROM_HEX(0x999999);
     self.totalExpenditureLabel.text = totalExpenditureString;
+}
+-(void)setTotalIncomeString:(NSString *)totalIncomeString
+{
+    self.totalIncomeLabel.font = Font(12);
+    self.totalIncomeLabel.textColor = UICOLOR_FROM_HEX(0x999999);
+    self.totalIncomeLabel.text = totalIncomeString;
+    if(IsStrEmpty(self.totalExpenditureString)){
+        [self.totalIncomeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.mas_right).offset(-20);
+        }];
+    }else{
+        [self.totalIncomeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.totalExpenditureTitleLabel.mas_left).offset(-30);
+        }];
+    }
 }
 @end

@@ -85,8 +85,15 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     DetailedTableHeaderView *view = [[DetailedTableHeaderView alloc] init];
-    view.dateString = [NSString stringWithFormat:@"%@",self.tableHeaderArray[section]];
-    view.totalExpenditureString = @"1238";
+    //NSLog(@"%ld",(long)section);
+    //NSLog(@"%@",self.tableHeaderArray);
+    view.dateString = [NSString stringWithFormat:@"%@",self.tableHeaderArray[section][0][@"acc_date"]];
+    if(!IsStrEmpty(self.tableHeaderArray[section][0][@"day_expenditure"]) || self.tableHeaderArray[section][0][@"day_expenditure"] != nil){
+        view.totalExpenditureString = self.tableHeaderArray[section][0][@"day_expenditure"];
+    }else{
+        view.totalExpenditureLabel.hidden = YES;
+        view.totalExpenditureTitleLabel.hidden = YES;
+    }
     return view;
     
 }
@@ -136,7 +143,7 @@
                                     //便利HeaderView数据
                                     NSMutableArray *mHeaderArray2 = [NSMutableArray array];
                                     for (NSDictionary *headDic in bigDic[@"headerInfo"]) {
-                                        NSLog(@"%@",headDic);
+                                        //NSLog(@"%@",headDic);
                                         [mHeaderArray2 addObject:headDic];
                                     }
                                     [mHeaderArray addObject:mHeaderArray2];
@@ -151,7 +158,7 @@
                                 }
                                 self.cellData = dataArray;
                                 self.tableHeaderArray = mHeaderArray;
-                                NSLog(@"%@",mHeaderArray);
+                                
                                 
                                 [self.tableView reloadData];
                                 [MBProgressHUD hideHUDForView:self.view animated:YES];
