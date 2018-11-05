@@ -31,7 +31,7 @@
         make.height.mas_equalTo(16);
         make.left.equalTo(self.mas_left).offset(137);
     }];
-    self.incomeTitleLabel.font = Font(14);
+    self.incomeTitleLabel.font = SystemFont(14);
     self.incomeTitleLabel.text = @"收入";
     self.incomeTitleLabel.textColor = UICOLOR_FROM_HEX(0x333333);
     self.expenditureTitleLabel = [UILabel new];
@@ -42,7 +42,7 @@
         make.height.mas_equalTo(16);
     }];
     self.expenditureTitleLabel.text = @"支出";
-    self.expenditureTitleLabel.font = Font(14);
+    self.expenditureTitleLabel.font = SystemFont(14);
     self.expenditureTitleLabel.textColor = UICOLOR_FROM_HEX(0x333333);
 }
 - (void)initDetailedTopInfoView {
@@ -66,7 +66,7 @@
         make.width.mas_equalTo(1);
     }];
     self.monthLabel = [UILabel new];
-    self.monthLabel.font = Font(12);
+    self.monthLabel.font = SystemFont(12);
     self.monthLabel.textColor = UICOLOR_FROM_HEX(0x000000);
     [monthBackView addSubview:self.monthLabel];
     [self.monthLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -112,27 +112,33 @@
 }
 -(void)setCurrentYear:(NSString *)currentYear
 {
-    self.yearTitleLabel.font = Font(14);
+    self.yearTitleLabel.font = SystemFont(14);
     self.yearTitleLabel.textColor = UICOLOR_FROM_HEX(0x333333);
     self.yearTitleLabel.text = currentYear;
 }
 -(void)setCurrentMonth:(NSString *)currentMonth {
-    NSMutableAttributedString *month = [self stringAttribute:currentMonth rangeString:@"月" font:Font(24)];
-    self.monthLabel.textColor = UICOLOR_FROM_HEX(0x000000);
-    self.monthLabel.attributedText = month;
+    if(!IsStrEmpty(currentMonth)){
+        NSMutableAttributedString *month = [self stringAttribute:currentMonth rangeString:@"月" font:Font(24)];
+        self.monthLabel.textColor = UICOLOR_FROM_HEX(0x000000);
+        self.monthLabel.attributedText = month;
+    }
 }
 - (void)setIncomeString:(NSString *)incomeString {
-    self.incomeLabel.font = Font(12);
-    NSMutableAttributedString *income = [self stringAttribute:incomeString rangeString:@"." font:Font(20)];
-    self.incomeLabel.textColor = UICOLOR_FROM_HEX(0x000000);
-    self.incomeLabel.attributedText = income;
+    if(!IsStrEmpty(incomeString)){
+        self.incomeLabel.font = SystemFont(12);
+        NSMutableAttributedString *income = [self stringAttribute:incomeString rangeString:@"." font:Font(20)];
+        self.incomeLabel.textColor = UICOLOR_FROM_HEX(0x000000);
+        self.incomeLabel.attributedText = income;
+    }
     
 }
 -(void)setExpenditureString:(NSString *)expenditureString {
-    self.expenditureLabel.font = Font(12);
-    self.expenditureLabel.textColor = UICOLOR_FROM_HEX(0x000000);
-    NSMutableAttributedString *expenditure = [self stringAttribute:expenditureString rangeString:@"." font:Font(20)];
-    self.expenditureLabel.attributedText = expenditure;
+    if(!IsStrEmpty(expenditureString)){
+        self.expenditureLabel.font = SystemFont(12);
+        self.expenditureLabel.textColor = UICOLOR_FROM_HEX(0x000000);
+        NSMutableAttributedString *expenditure = [self stringAttribute:expenditureString rangeString:@"." font:Font(20)];
+        self.expenditureLabel.attributedText = expenditure;
+    }
 }
 //富文本设置
 - (NSMutableAttributedString *)stringAttribute:(NSString *)string rangeString:(NSString *)rangeString font:(UIFont *)font{

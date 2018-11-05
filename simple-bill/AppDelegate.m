@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <IQKeyboardManager/IQKeyboardManager.h>
 #import "BaseClass/BaseTabBarController.h"
+#import "LoginViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -31,8 +32,19 @@
 - (void)initKeyWindow {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = UICOLOR_FROM_HEX(0xfefefe);
+    LoginViewController *login = [LoginViewController new];
     BaseTabBarController *tabVC = [BaseTabBarController new];
-    self.window.rootViewController = tabVC;
+    if(IsStrEmpty([UserDefaults() objectForKey:@"phone"]) && IsStrEmpty([UserDefaults() objectForKey:@"user_id"])){
+        [UserDefaults() setObject:@"no" forKey:@"login"];
+        [UserDefaults() synchronize];
+    }
+    if([[UserDefaults() objectForKey:@"login"] isEqualToString:@"yes"]){
+        self.window.rootViewController = tabVC;
+    }else{
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
+        self.window.rootViewController = nav;
+    }
+    
     [self.window makeKeyAndVisible];
 }
 - (void)applicationWillResignActive:(UIApplication *)application {

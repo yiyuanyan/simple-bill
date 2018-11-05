@@ -53,9 +53,9 @@
         NSLog(@"月份View被点击啦");
     };
     //收入
-    self.detailedTopInfoView.incomeString = @"1000.00";
+    self.detailedTopInfoView.incomeString = @"";
     //支出
-    self.detailedTopInfoView.expenditureString = @"853.61";
+    self.detailedTopInfoView.expenditureString = @"";
     
 }
 #pragma mark --设置TableView
@@ -78,7 +78,6 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //NSLog(@"%@",self.cellData[section]);
     
     return [self.cellData[section] count];
 }

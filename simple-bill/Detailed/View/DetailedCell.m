@@ -49,7 +49,7 @@
         make.left.equalTo(self.mas_left).offset(20);
     }];
     self.cateLabel = [UILabel new];
-    self.cateLabel.font = Font(14);
+    self.cateLabel.font = SystemFont(14);
     self.cateLabel.textColor = UICOLOR_FROM_HEX(0x000000);
     [self addSubview:self.cateLabel];
     [self.cateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -59,7 +59,7 @@
     }];
     
     self.moneyLabel = [UILabel new];
-    self.moneyLabel.font = Font(14);
+    self.moneyLabel.font = SystemFont(14);
     self.moneyLabel.textColor = UICOLOR_FROM_HEX(0x999999);
     [self addSubview:self.moneyLabel];
     [self.moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
