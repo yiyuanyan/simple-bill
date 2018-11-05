@@ -16,6 +16,7 @@
 		35231153216C3E1C00D277E5 /* MyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35231152216C3E1C00D277E5 /* MyController.m */; };
 		352D5FD6217982E5000664A9 /* DetailedTopInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 352D5FD5217982E5000664A9 /* DetailedTopInfoView.m */; };
 		3530B80D217DCC9F008E6743 /* DetailedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3530B80C217DCC9F008E6743 /* DetailedCell.m */; };
+		355552002190733800B32515 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 355551FF2190733800B32515 /* LoginView.m */; };
 		35664CF1217EB7DA006A9CE3 /* DetailedTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35664CF0217EB7DA006A9CE3 /* DetailedTableHeaderView.m */; };
 		35AE8FCF216B0C6500249E40 /* MBProgressHUD+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AE8FCC216B0C6500249E40 /* MBProgressHUD+Extension.m */; };
 		35AE8FD0216B0C6500249E40 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 35AE8FCD216B0C6500249E40 /* MBProgressHUD.bundle */; };
@@ -71,6 +72,8 @@
 		352D5FD5217982E5000664A9 /* DetailedTopInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailedTopInfoView.m; sourceTree = "<group>"; };
 		3530B80B217DCC9F008E6743 /* DetailedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailedCell.h; sourceTree = "<group>"; };
 		3530B80C217DCC9F008E6743 /* DetailedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailedCell.m; sourceTree = "<group>"; };
+		355551FE2190733800B32515 /* LoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
+		355551FF2190733800B32515 /* LoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		35664CEF217EB7DA006A9CE3 /* DetailedTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailedTableHeaderView.h; sourceTree = "<group>"; };
 		35664CF0217EB7DA006A9CE3 /* DetailedTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailedTableHeaderView.m; sourceTree = "<group>"; };
 		35AE8FCC216B0C6500249E40 /* MBProgressHUD+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Extension.m"; sourceTree = "<group>"; };
@@ -312,6 +315,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		355551FC2190732C00B32515 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		355551FD2190732C00B32515 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				355551FE2190733800B32515 /* LoginView.h */,
+				355551FF2190733800B32515 /* LoginView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		35EE6E1C216B088C00AC3718 /* BaseClass */ = {
 			isa = PBXGroup;
 			children = (
@@ -406,9 +425,9 @@
 		B7062AA5218FFC05002F4EFE /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				355551FC2190732C00B32515 /* Model */,
+				355551FD2190732C00B32515 /* View */,
 				B7062AA6218FFC05002F4EFE /* Controller */,
-				B7062AA7218FFC05002F4EFE /* Model */,
-				B7062AA8218FFC05002F4EFE /* View */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -420,20 +439,6 @@
 				B7062AAA218FFC19002F4EFE /* LoginViewController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		B7062AA7218FFC05002F4EFE /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		B7062AA8218FFC05002F4EFE /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		ED305D0091E3D8E491230829 /* Pods */ = {
@@ -728,6 +733,7 @@
 				35AE8FCF216B0C6500249E40 /* MBProgressHUD+Extension.m in Sources */,
 				B737A8502181A52500EE776C /* HttpTools.m in Sources */,
 				35231147216C3DB600D277E5 /* DetailedController.m in Sources */,
+				355552002190733800B32515 /* LoginView.m in Sources */,
 				35DCD6182186ED1E0011A501 /* DetailedCellModel.m in Sources */,
 				35231153216C3E1C00D277E5 /* MyController.m in Sources */,
 				35FE1E4C216AF2DF00488071 /* main.m in Sources */,

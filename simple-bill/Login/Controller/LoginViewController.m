@@ -7,7 +7,7 @@
 //
 
 #import "LoginViewController.h"
-
+#import "LoginView.h"
 @interface LoginViewController ()
 
 @end
@@ -16,10 +16,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = UICOLOR_RANDOM_COLOR();
+    self.view.backgroundColor = UICOLOR_FROM_HEX(0xffffff);
+    [self initWithLoginView];
     // Do any additional setup after loading the view.
 }
-
+- (void)initWithLoginView {
+    LoginView *loginVC = [LoginView new];
+    [self.view addSubview:loginVC];
+    [loginVC mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top).offset(NAVIGATION_BAR_HEIGHT);
+        make.bottom.left.right.equalTo(self.view);
+    }];
+}
 /*
 #pragma mark - Navigation
 
