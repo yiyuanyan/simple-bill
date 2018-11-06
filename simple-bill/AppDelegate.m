@@ -18,9 +18,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-//    [[UIApplication sharedApplication] setStatusBarHidden:NO];
-//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     UIApplication *app = [UIApplication sharedApplication];
     //app.statusBarStyle = UIStatusBarStyleLightContent;
     app.statusBarStyle = UIStatusBarStyleDefault;
@@ -46,6 +43,15 @@
     }
     
     [self.window makeKeyAndVisible];
+}
+- (void)initIQKeyboardManager {
+    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+    manager.enable = YES;
+    manager.shouldResignOnTouchOutside = YES;
+    manager.shouldToolbarUsesTextFieldTintColor = YES;
+    manager.enableAutoToolbar = YES;
+    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
+    
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

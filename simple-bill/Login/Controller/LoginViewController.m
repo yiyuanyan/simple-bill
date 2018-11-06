@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 #import "LoginView.h"
 @interface LoginViewController ()
-
+@property(nonatomic, strong) LoginView *loginVC;
 @end
 
 @implementation LoginViewController
@@ -21,12 +21,18 @@
     // Do any additional setup after loading the view.
 }
 - (void)initWithLoginView {
-    LoginView *loginVC = [LoginView new];
-    [self.view addSubview:loginVC];
-    [loginVC mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.loginVC = [LoginView new];
+    [self.view addSubview:self.loginVC];
+    [self.loginVC mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.mas_top).offset(NAVIGATION_BAR_HEIGHT);
         make.bottom.left.right.equalTo(self.view);
     }];
+    @weakify(self);
+    [[self.loginVC.loginButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        @strongify(self);
+        NSLog(@"点击登录按钮啦---%@",self.loginVC.userName.text);
+    }];
+    
 }
 /*
 #pragma mark - Navigation
