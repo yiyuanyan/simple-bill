@@ -16,7 +16,10 @@
 #define NSLog(FORMAT, ...) nil
 #endif
 
-
+//注册地址
+#define REGISTER_PATH @"http://yiyuanyan.eicp.net:81/reg/"
+//登录地址
+#define LOGIN_PATH @"http://yiyuanyan.eicp.net:81/login/"
 //字符串是否为空
 #define IsStrEmpty(_ref)    (((_ref) == nil) || ([(_ref) isEqual:[NSNull null]]) ||([(_ref)isEqualToString:@""]))
 //数组是否为空

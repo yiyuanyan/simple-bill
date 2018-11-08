@@ -68,6 +68,7 @@
     //密码输入框
     self.userPwd = [UITextField new];
     self.userPwd.placeholder = @"请输入6位以上密码";
+    self.userPwd.secureTextEntry = YES;
     [inputOrder addSubview:self.userPwd];
     [self.userPwd mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.userName);
@@ -118,7 +119,7 @@
     self.loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.loginButton.layer.masksToBounds = YES;
     self.loginButton.layer.cornerRadius = 5;
-    [self.loginButton setTitle:@"登  录" forState:UIControlStateNormal];
+    [self.loginButton setTitle:@"登  录 / 注  册" forState:UIControlStateNormal];
     self.loginButton.titleLabel.font = Font(14);
     [self.loginButton setTitleColor:UICOLOR_FROM_HEX(0xffffff) forState:UIControlStateNormal];
     self.loginButton.backgroundColor = UICOLOR_FROM_HEX(0x4768f3);
