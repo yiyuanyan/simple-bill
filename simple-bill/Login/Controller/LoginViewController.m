@@ -46,12 +46,41 @@
         if(self.localBOOL == YES){
             //本地登录
             BaseTabBarController *tabbar = [BaseTabBarController new];
+            [UserDefaults() setObject:@"yes" forKey:@"login"];
+            [UserDefaults() setObject:@"yes" forKey:@"localLogin"];
+            [UserDefaults() synchronize];
             [self.navigationController pushViewController:tabbar animated:YES];
             
         }else{
             //网络登录
             NSString *userPhone = self.loginVC.userName.text;
             NSString *userPwd = self.loginVC.userPwd.text;
+            NSString *path = [NSString stringWithFormat:@"%@%@/%@",LOGIN_PATH,userPhone,userPwd];
+            [HttpTools PostHttpDataWithUrlStr:path SuccessBlock:^(id  _Nonnull responseObject) {
+                
+                [MBProgressHUD showLoading:self.view];
+                if([responseObject[@"status"] intValue] == 1){
+                    NSDictionary *userInfo = responseObject[@"data"];
+                    [UserDefaults() setObject:@"yes" forKey:@"login"];
+                    [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"u_id"]] forKey:@"user_id"];
+                    [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"user_phone"]] forKey:@"user_phone"];
+                    [UserDefaults() setObject:[NSString stringWithFormat:@"%@",self.loginVC.userPwd] forKey:@"user_pwd"];
+                    [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"user_token"]] forKey:@"user_token"];
+                    [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"token_time_out"]] forKey:@"token_time_out"];
+                    [UserDefaults() synchronize];
+                    NSLog(@"%@",[UserDefaults() objectForKey:@"token_time_out"]);
+                    [MBProgressHUD hideHUDForView:self.view];
+                    BaseTabBarController *tabbar = [BaseTabBarController new];
+                    [self.navigationController presentViewController:tabbar animated:NO completion:nil];
+                }else{
+                    [MBProgressHUD hideHUDForView:self.view];
+                    [MBProgressHUD showMessage:[NSString stringWithFormat:@"%@",responseObject[@"msg"]] toView:self.view];
+                }
+                
+            } FailedBlock:^(id  _Nonnull error) {
+                NSLog(@"%@",error);
+                [MBProgressHUD showMessage:@"登录失败" toView:self.view];
+            }];
             
         }
     }];

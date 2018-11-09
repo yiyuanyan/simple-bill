@@ -16,6 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //验证用户Token是否过期
+    [self initCheckUserTokenTimeOut];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"简单记账";
     [self.navigationController.navigationBar setTitleTextAttributes:
@@ -34,6 +36,31 @@
         make.top.left.right.equalTo(self.view).offset(0);
         make.height.mas_equalTo(NAVIGATION_BAR_HEIGHT + 88);
     }];
+    
+}
+- (void)initCheckUserTokenTimeOut {
+    NSLog(@"验证用户Token是否过期");
+    NSString *token = [NSString stringWithFormat:@"%@",[UserDefaults() objectForKey:@"user_token"]];
+    NSInteger token_time_out = [[UserDefaults() objectForKey:@"token_time_out"] integerValue];
+    int curr_time = [BaseViewController getNowTimeTimestamp];
+    NSInteger difference = curr_time - token_time_out;
+    if(difference > 60){
+        NSLog(@"token已经超时");
+    }else{
+        NSLog(@"token还未超时");
+    }
+    
+}
++ (int )getNowTimeTimestamp{
+    NSDate *nowDate = [NSDate date];
+    NSDateFormatter *dateFomatter = [[NSDateFormatter alloc] init];
+    dateFomatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSString *nowDateString = [dateFomatter stringFromDate:nowDate];
+    NSDate *nowDate1 = [dateFomatter dateFromString:nowDateString];
+    NSTimeInterval interval = [nowDate1 timeIntervalSince1970];
+    NSString *str = [NSString stringWithFormat:@"%.0f",interval];
+    int time = [str intValue];
+    return time;
     
 }
 /*

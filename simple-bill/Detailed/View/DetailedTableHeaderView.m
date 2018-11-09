@@ -47,7 +47,6 @@
     //支出
     self.expenditureLabel = [UILabel new];
     self.expenditureLabel.font = SystemFont(14);
-    NSLog(@"%@",Font(14));
     self.expenditureLabel.textColor = UICOLOR_FROM_HEX(0x999999);
     //收入
     self.incomeLabel = [UILabel new];

@@ -31,7 +31,7 @@
     //设置顶部视图
     [self setDetailedTopInfoView];
     //tableView
-    [self initTableView];
+    
     //获取网络数据
     [self GetHttpInfo:@"http://yiyuanyan.eicp.net:81/detailed/2018-10"];
     
@@ -126,7 +126,7 @@
     [MBProgressHUD showLoading:self.view title:@"Loading..."];
     [HttpTools GetHttpDataWithUrlStr:url
                         SuccessBlock:^(id  _Nonnull responseObject) {
-                            if (!IsArrEmpty(responseObject[@"data"])){
+                            if ([responseObject[@"status"] intValue] == 1){
                                 self.detailedTopInfoView.incomeString = [NSString stringWithFormat:@"%@",responseObject[@"income"]];
                                 self.detailedTopInfoView.expenditureString = [NSString stringWithFormat:@"%@",responseObject[@"expenditure"]];
                                 NSMutableArray *mHeaderArray = [NSMutableArray array];
@@ -144,7 +144,7 @@
                                 }
                                 self.cellData = dataArray;
                                 self.tableHeaderArray = mHeaderArray;
-                                
+                                [self initTableView];
                                 
                                 [self.tableView reloadData];
                                 [MBProgressHUD hideHUDForView:self.view animated:YES];

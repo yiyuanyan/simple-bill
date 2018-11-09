@@ -36,7 +36,14 @@
         [UserDefaults() synchronize];
     }
     if([[UserDefaults() objectForKey:@"login"] isEqualToString:@"yes"]){
-        self.window.rootViewController = tabVC;
+        //本地登录
+        if([[UserDefaults() objectForKey:@"localLogin"] isEqualToString:@"yse"]){
+            self.window.rootViewController = tabVC;
+        }else{
+            //网络登录
+            self.window.rootViewController = tabVC;
+        }
+        
     }else{
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
         self.window.rootViewController = nav;

@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseViewController : UIViewController
 @property(nonatomic, strong) UIView *topView;
+//获取当前时间戳
++ (int )getNowTimeTimestamp;
+- (void)initCheckUserTokenTimeOut;
 @end
 
 NS_ASSUME_NONNULL_END

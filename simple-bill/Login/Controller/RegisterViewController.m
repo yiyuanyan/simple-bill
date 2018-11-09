@@ -65,11 +65,18 @@
     }];
 }
 - (void)registerUserInfo:(NSString *)path{
-    NSLog(@"%@",path);
     [HttpTools PostHttpDataWithUrlStr:path SuccessBlock:^(id  _Nonnull responseObject) {
-        NSLog(@"%@",responseObject);
         if([responseObject[@"status"] intValue] == 1){
             [MBProgressHUD showMessage:@"注册成功" toView:self.view];
+            NSDictionary *userInfo = responseObject[@"data"];
+            [UserDefaults() setObject:@"yes" forKey:@"login"];
+            [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"u_id"]] forKey:@"user_id"];
+            [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"user_phone"]] forKey:@"user_phone"];
+            [UserDefaults() setObject:[NSString stringWithFormat:@"%@",self.regView.userPwd] forKey:@"user_pwd"];
+            [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"user_token"]] forKey:@"user_token"];
+            [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"token_time_out"]] forKey:@"token_time_out"];
+            [UserDefaults() synchronize];
+            NSLog(@"%@",[UserDefaults() objectForKey:@"token_time_out"]);
             BaseTabBarController *tabbar = [BaseTabBarController new];
             [self.navigationController presentViewController:tabbar animated:NO completion:nil];
             
@@ -83,7 +90,6 @@
 }
 //验证手机号码
 - (BOOL)validateContactNumber:(NSString *)mobileNumber{
-    NSLog(@"%@",mobileNumber);
     /**
      * 手机号码
      * 移动：134[0-8],135,136,137,138,139,150,151,157,158,159,182,187,188
