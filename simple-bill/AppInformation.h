@@ -20,6 +20,8 @@
 #define REGISTER_PATH @"http://yiyuanyan.eicp.net:81/reg/"
 //登录地址
 #define LOGIN_PATH @"http://yiyuanyan.eicp.net:81/login/"
+//更新Tokend
+#define UPDATE_TOKEN @"http://yiyuanyan.eicp.net:81/token/"
 //字符串是否为空
 #define IsStrEmpty(_ref)    (((_ref) == nil) || ([(_ref) isEqual:[NSNull null]]) ||([(_ref)isEqualToString:@""]))
 //数组是否为空

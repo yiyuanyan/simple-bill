@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-
+#import "LoginViewController.h"
 @interface BaseViewController ()
 
 @end
@@ -41,15 +41,44 @@
 - (void)initCheckUserTokenTimeOut {
     NSLog(@"验证用户Token是否过期");
     NSString *token = [NSString stringWithFormat:@"%@",[UserDefaults() objectForKey:@"user_token"]];
+    NSString *user_phone = [NSString stringWithFormat:@"%@",[UserDefaults() objectForKey:@"user_phone"]];
+    NSString *user_pwd = [NSString stringWithFormat:@"%@",[UserDefaults() objectForKey:@"user_pwd"]];
     NSInteger token_time_out = [[UserDefaults() objectForKey:@"token_time_out"] integerValue];
+    
     int curr_time = [BaseViewController getNowTimeTimestamp];
     NSInteger difference = curr_time - token_time_out;
+    NSLog(@"当前时间戳：%ld-------服务器时间戳：%ld",(long)curr_time,token_time_out);
     if(difference > 60){
+        [self getNewToken:user_phone userPwd:user_pwd];
         NSLog(@"token已经超时");
+        
     }else{
         NSLog(@"token还未超时");
     }
     
+}
+//更新token
+- (void) getNewToken:(NSString *)userPhone userPwd:(NSString *)userPwd {
+    NSString *url = [NSString stringWithFormat:@"%@%@/%@",UPDATE_TOKEN,userPhone,userPwd];
+    [MBProgressHUD showLoading:self.view];
+    [HttpTools PostHttpDataWithUrlStr:url SuccessBlock:^(id  _Nonnull responseObject) {
+        if([responseObject[@"status"] intValue] == 1){
+            NSDictionary *dic = responseObject[@"data"];
+            [UserDefaults() setObject:[NSString stringWithFormat:@"%@",dic[@"user_token"]] forKey:@"user_token"];
+            [UserDefaults() setObject:[NSString stringWithFormat:@"%@",dic[@"token_time_out"]] forKey:@"token_time_out"];
+            [UserDefaults() synchronize];
+            
+            [MBProgressHUD hideHUDForView:self.view];
+        }else{
+            [MBProgressHUD hideHUDForView:self.view];
+            LoginViewController *loginVC = [LoginViewController new];
+            [self.navigationController pushViewController:loginVC animated:nil];
+            
+        }
+        [MBProgressHUD hideHUDForView:self.view];
+    } FailedBlock:^(id  _Nonnull error) {
+        [MBProgressHUD showMessage:@"网络不给力" toView:self.view];
+    }];
 }
 + (int )getNowTimeTimestamp{
     NSDate *nowDate = [NSDate date];

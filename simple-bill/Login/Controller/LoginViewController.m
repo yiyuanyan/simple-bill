@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UICOLOR_FROM_HEX(0xffffff);
+    self.navigationItem.hidesBackButton = YES;
     [self initWithLoginView];
     [self loginAndRegisterButtonAction];
     // Do any additional setup after loading the view.
@@ -64,7 +65,7 @@
                     [UserDefaults() setObject:@"yes" forKey:@"login"];
                     [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"u_id"]] forKey:@"user_id"];
                     [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"user_phone"]] forKey:@"user_phone"];
-                    [UserDefaults() setObject:[NSString stringWithFormat:@"%@",self.loginVC.userPwd] forKey:@"user_pwd"];
+                    [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userPwd] forKey:@"user_pwd"];
                     [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"user_token"]] forKey:@"user_token"];
                     [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"token_time_out"]] forKey:@"token_time_out"];
                     [UserDefaults() synchronize];
