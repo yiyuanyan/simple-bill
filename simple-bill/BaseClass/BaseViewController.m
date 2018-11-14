@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //验证用户Token是否过期
-    [self initCheckUserTokenTimeOut];
+    //[self initCheckUserTokenTimeOut];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"简单记账";
     [self.navigationController.navigationBar setTitleTextAttributes:
@@ -38,6 +38,7 @@
     }];
     
 }
+/*
 - (void)initCheckUserTokenTimeOut {
     NSLog(@"验证用户Token是否过期");
     NSString *token = [NSString stringWithFormat:@"%@",[UserDefaults() objectForKey:@"user_token"]];
@@ -56,28 +57,22 @@
         NSLog(@"token还未超时");
     }
     
-}
+}*/
 //更新token
-- (void) getNewToken:(NSString *)userPhone userPwd:(NSString *)userPwd {
++ (void) getNewToken:(NSString *)userPhone userPwd:(NSString *)userPwd {
+    
     NSString *url = [NSString stringWithFormat:@"%@%@/%@",UPDATE_TOKEN,userPhone,userPwd];
-    [MBProgressHUD showLoading:self.view];
+    NSLog(@"更新TOKEN请求：%@",url);
     [HttpTools PostHttpDataWithUrlStr:url SuccessBlock:^(id  _Nonnull responseObject) {
         if([responseObject[@"status"] intValue] == 1){
             NSDictionary *dic = responseObject[@"data"];
-            [UserDefaults() setObject:[NSString stringWithFormat:@"%@",dic[@"user_token"]] forKey:@"user_token"];
+            [UserDefaults() setObject:[NSString stringWithFormat:@"%@",dic[@"token"]] forKey:@"user_token"];
             [UserDefaults() setObject:[NSString stringWithFormat:@"%@",dic[@"token_time_out"]] forKey:@"token_time_out"];
             [UserDefaults() synchronize];
-            
-            [MBProgressHUD hideHUDForView:self.view];
-        }else{
-            [MBProgressHUD hideHUDForView:self.view];
-            LoginViewController *loginVC = [LoginViewController new];
-            [self.navigationController pushViewController:loginVC animated:nil];
-            
+            NSLog(@"Token更新成功：%@",dic[@"token"]);
         }
-        [MBProgressHUD hideHUDForView:self.view];
     } FailedBlock:^(id  _Nonnull error) {
-        [MBProgressHUD showMessage:@"网络不给力" toView:self.view];
+       
     }];
 }
 + (int )getNowTimeTimestamp{

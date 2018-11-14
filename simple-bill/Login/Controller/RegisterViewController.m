@@ -76,7 +76,6 @@
             [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"user_token"]] forKey:@"user_token"];
             [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"token_time_out"]] forKey:@"token_time_out"];
             [UserDefaults() synchronize];
-            NSLog(@"%@",[UserDefaults() objectForKey:@"token_time_out"]);
             BaseTabBarController *tabbar = [BaseTabBarController new];
             [self.navigationController presentViewController:tabbar animated:NO completion:nil];
             

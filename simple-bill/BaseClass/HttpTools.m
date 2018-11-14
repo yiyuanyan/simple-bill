@@ -12,6 +12,8 @@
 +(void)PostHttpDataWithUrlStr:(NSString *)url SuccessBlock:(SuccessBlock)successBlock FailedBlock:(FailedBlock)failedBlock {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain",@"text/json",nil];
+    [manager.requestSerializer setValue:[UserDefaults() objectForKey:@"user_token"] forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[UserDefaults() objectForKey:@"user_id"] forHTTPHeaderField:@"id"];
     [manager POST:url parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -27,6 +29,8 @@
 + (void)GetHttpDataWithUrlStr:(NSString *)url SuccessBlock:(SuccessBlock)successBlock FailedBlock:(FailedBlock)failedBlock {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain",@"text/json", nil];
+    [manager.requestSerializer setValue:[UserDefaults() objectForKey:@"user_token"] forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[UserDefaults() objectForKey:@"user_id"] forHTTPHeaderField:@"id"];
     [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if(successBlock){
             successBlock(responseObject);

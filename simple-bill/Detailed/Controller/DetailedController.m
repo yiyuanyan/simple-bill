@@ -5,7 +5,6 @@
 //  Created by 何建新 on 2018/10/9.
 //  Copyright © 2018 何建新. All rights reserved.
 //  明细
-
 #import "DetailedController.h"
 #import "DetailedTopInfoView.h"
 #import "DetailedCell.h"
@@ -33,6 +32,8 @@
     //tableView
     
     //获取网络数据
+    //[self GetHttpInfo:[NSString stringWithFormat:@"%@/detailed/2018-10",BASE_URL]];
+    //[self GetHttpInfo:@"http://yiyuanyan.ecip.net:81/detailed/2018-10"];
     [self GetHttpInfo:@"http://yiyuanyan.eicp.net:81/detailed/2018-10"];
     
     
@@ -148,14 +149,23 @@
                                 
                                 [self.tableView reloadData];
                                 [MBProgressHUD hideHUDForView:self.view animated:YES];
-                            }else{
-                                //[MBProgressHUD hideHUDForView:self.view animated:NO];
-                                [MBProgressHUD showMessage:@"本月没有数据" toView:self.view];
+                            }else if ([responseObject[@"status"] intValue] == 99){
+                                //token已过期，进行token更新
+                                NSLog(@"Token已过期，开始更新Token");
+                                [BaseViewController getNewToken:[NSString stringWithFormat:@"%@",[UserDefaults() objectForKey:@"user_phone"]] userPwd:[NSString stringWithFormat:@"%@",[UserDefaults() objectForKey:@"user_pwd"]]];
+                                [self GetHttpInfo:@"http://yiyuanyan.eicp.net:81/detailed/2018-10"];
+                                [self.topView layoutIfNeeded];
+                                [self initTableView];
+                                [self.tableView reloadData];
+                            }else if([responseObject[@"status"] intValue] == 0){
+                                //用户不存在
+                                
                             }
                             
                             
                         } FailedBlock:^(id  _Nonnull error) {
                             //[MBProgressHUD hideHUDForView:self.view animated:YES];
+                            NSLog(@"%@",error);
                             [MBProgressHUD showMessage:@"加载出错" toView:self.view];
                         }];
     

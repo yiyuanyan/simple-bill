@@ -22,6 +22,8 @@
 #define LOGIN_PATH @"http://yiyuanyan.eicp.net:81/login/"
 //更新Tokend
 #define UPDATE_TOKEN @"http://yiyuanyan.eicp.net:81/token/"
+//BaseUrl
+#define BASE_URL [NSString stringWithFormat:@"http://yiyuanyan.eicp.net:81/%@/%@",[UserDefaults() objectForKey:@"user_token"],[UserDefaults() objectForKey:@"user_id"]]
 //字符串是否为空
 #define IsStrEmpty(_ref)    (((_ref) == nil) || ([(_ref) isEqual:[NSNull null]]) ||([(_ref)isEqualToString:@""]))
 //数组是否为空

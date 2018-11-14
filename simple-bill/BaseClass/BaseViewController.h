@@ -14,7 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) UIView *topView;
 //获取当前时间戳
 + (int )getNowTimeTimestamp;
-- (void)initCheckUserTokenTimeOut;
++ (void) getNewToken:(NSString *)userPhone userPwd:(NSString *)userPwd;
+//- (void)initCheckUserTokenTimeOut;
 @end
 
 NS_ASSUME_NONNULL_END
