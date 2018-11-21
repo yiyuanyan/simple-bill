@@ -65,26 +65,21 @@
     }];
 }
 - (void)registerUserInfo:(NSString *)path{
-    [HttpTools PostHttpDataWithUrlStr:path SuccessBlock:^(id  _Nonnull responseObject) {
-        if([responseObject[@"status"] intValue] == 1){
-            [MBProgressHUD showMessage:@"注册成功" toView:self.view];
-            NSDictionary *userInfo = responseObject[@"data"];
-            [UserDefaults() setObject:@"yes" forKey:@"login"];
-            [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"u_id"]] forKey:@"user_id"];
-            [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"user_phone"]] forKey:@"user_phone"];
-            [UserDefaults() setObject:[NSString stringWithFormat:@"%@",self.regView.userPwd.text] forKey:@"user_pwd"];
-            [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"user_token"]] forKey:@"user_token"];
-            [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"token_time_out"]] forKey:@"token_time_out"];
-            [UserDefaults() synchronize];
-            BaseTabBarController *tabbar = [BaseTabBarController new];
-            [self.navigationController presentViewController:tabbar animated:NO completion:nil];
-            
-        }
-        if([responseObject[@"status"] intValue] == 0){
-            [MBProgressHUD showMessage:@"用户已存在" toView:self.view];
-        }
-    } FailedBlock:^(id  _Nonnull error) {
-        [MBProgressHUD showMessage:@"注册失败" toView:self.view];
+    [[HttpTools share] sendPostRequestWithPath:path isLoginOrRegister:YES viewController:self success:^(id  _Nonnull responseObject) {
+        //本地缓存用户基本信息
+        [UserDefaults() setObject:@"yes" forKey:@"login"];
+        [UserDefaults() setObject:responseObject[@"u_id"] forKey:@"u_id"];
+        [UserDefaults() setObject:responseObject[@"user_phone"] forKey:@"user_phone"];
+        [UserDefaults() setObject:self.regView.confirmPwd.text forKey:@"user_pwd"];
+        //[UserDefaults() setObject:responseObject[@"user_pwd"] forKey:@"user_pwd"];
+        [UserDefaults() setObject:responseObject[@"user_token"] forKey:@"user_token"];
+        [UserDefaults() setObject:responseObject[@"user_nickname"] forKey:@"user_nickname"];
+        [UserDefaults() synchronize];
+        [MBProgressHUD hideHUDForView:self.view];
+        BaseTabBarController *tabVC = [BaseTabBarController new];
+        [self.navigationController presentViewController:tabVC animated:NO completion:nil];
+    } failure:^(id  _Nonnull error) {
+        
     }];
 }
 //验证手机号码

@@ -31,6 +31,7 @@
 		35FE1E61216AF2DF00488071 /* simple_billUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 35FE1E60216AF2DF00488071 /* simple_billUITests.m */; };
 		9E33F35613FFFCDCF48D204F /* Pods_simple_bill.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC1CC5A48EF69F568225CD29 /* Pods_simple_bill.framework */; };
 		B3F1521E5CECAA61E171351E /* Pods_simple_billUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3C4DC0C3AE118FD639CB2FE /* Pods_simple_billUITests.framework */; };
+		B7016DE921A29D0700045A26 /* Permissions.m in Sources */ = {isa = PBXBuildFile; fileRef = B7016DE821A29D0700045A26 /* Permissions.m */; };
 		B7062AAB218FFC19002F4EFE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7062AAA218FFC19002F4EFE /* LoginViewController.m */; };
 		B737A8502181A52500EE776C /* HttpTools.m in Sources */ = {isa = PBXBuildFile; fileRef = B737A84F2181A52500EE776C /* HttpTools.m */; };
 		B73883F52193D062006A0B3A /* RegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B73883F42193D062006A0B3A /* RegisterView.m */; };
@@ -107,6 +108,8 @@
 		76634F35C9362ABFE2F4A47E /* Pods_simple_billTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_simple_billTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C4B05E5C04F3ACBA4493940 /* Pods-simple-billUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-simple-billUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-simple-billUITests/Pods-simple-billUITests.release.xcconfig"; sourceTree = "<group>"; };
 		97F8D8ABFB438B125808CF45 /* Pods-simple-bill.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-simple-bill.debug.xcconfig"; path = "Pods/Target Support Files/Pods-simple-bill/Pods-simple-bill.debug.xcconfig"; sourceTree = "<group>"; };
+		B7016DE721A29D0700045A26 /* Permissions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Permissions.h; sourceTree = "<group>"; };
+		B7016DE821A29D0700045A26 /* Permissions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Permissions.m; sourceTree = "<group>"; };
 		B7062AA9218FFC19002F4EFE /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		B7062AAA218FFC19002F4EFE /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B737A84E2181A52500EE776C /* HttpTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpTools.h; sourceTree = "<group>"; };
@@ -358,6 +361,8 @@
 				35231143216C3D9E00D277E5 /* BaseNavigationController.m */,
 				B737A84E2181A52500EE776C /* HttpTools.h */,
 				B737A84F2181A52500EE776C /* HttpTools.m */,
+				B7016DE721A29D0700045A26 /* Permissions.h */,
+				B7016DE821A29D0700045A26 /* Permissions.m */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -754,6 +759,7 @@
 				355552002190733800B32515 /* LoginView.m in Sources */,
 				35DCD6182186ED1E0011A501 /* DetailedCellModel.m in Sources */,
 				35231153216C3E1C00D277E5 /* MyController.m in Sources */,
+				B7016DE921A29D0700045A26 /* Permissions.m in Sources */,
 				35FE1E4C216AF2DF00488071 /* main.m in Sources */,
 				352D5FD6217982E5000664A9 /* DetailedTopInfoView.m in Sources */,
 				35FE1E3E216AF2DE00488071 /* AppDelegate.m in Sources */,

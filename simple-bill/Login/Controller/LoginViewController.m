@@ -57,30 +57,27 @@
             NSString *userPhone = self.loginVC.userName.text;
             NSString *userPwd = self.loginVC.userPwd.text;
             NSString *path = [NSString stringWithFormat:@"%@%@/%@",LOGIN_PATH,userPhone,userPwd];
-            [HttpTools PostHttpDataWithUrlStr:path SuccessBlock:^(id  _Nonnull responseObject) {
-                
-                [MBProgressHUD showLoading:self.view];
-                if([responseObject[@"status"] intValue] == 1){
-                    NSDictionary *userInfo = responseObject[@"data"];
+            [[HttpTools share] sendPostRequestWithPath:path isLoginOrRegister:YES viewController:self success:^(id  _Nonnull responseObject) {
+                NSLog(@"登陆了：%@",responseObject);
+                if(!IsDicEmpty(responseObject)){
+                    //本地缓存用户基本信息
                     [UserDefaults() setObject:@"yes" forKey:@"login"];
-                    [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"u_id"]] forKey:@"user_id"];
-                    [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"user_phone"]] forKey:@"user_phone"];
-                    [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userPwd] forKey:@"user_pwd"];
-                    [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"user_token"]] forKey:@"user_token"];
-                    [UserDefaults() setObject:[NSString stringWithFormat:@"%@",userInfo[@"token_time_out"]] forKey:@"token_time_out"];
+                    [UserDefaults() setObject:responseObject[@"u_id"] forKey:@"u_id"];
+                    [UserDefaults() setObject:responseObject[@"user_phone"] forKey:@"user_phone"];
+                    [UserDefaults() setObject:self.loginVC.userPwd.text forKey:@"user_pwd"];
+                    //[UserDefaults() setObject:responseObject[@"user_pwd"] forKey:@"user_pwd"];
+                    [UserDefaults() setObject:responseObject[@"user_token"] forKey:@"user_token"];
+                    [UserDefaults() setObject:responseObject[@"user_nickname"] forKey:@"user_nickname"];
                     [UserDefaults() synchronize];
-                    NSLog(@"%@",[UserDefaults() objectForKey:@"token_time_out"]);
                     [MBProgressHUD hideHUDForView:self.view];
-                    BaseTabBarController *tabbar = [BaseTabBarController new];
-                    [self.navigationController presentViewController:tabbar animated:NO completion:nil];
+                    BaseTabBarController *tabVC = [BaseTabBarController new];
+                    [self.navigationController presentViewController:tabVC animated:NO completion:nil];
                 }else{
                     [MBProgressHUD hideHUDForView:self.view];
-                    [MBProgressHUD showMessage:[NSString stringWithFormat:@"%@",responseObject[@"msg"]] toView:self.view];
+                    [MBProgressHUD showMessage:@"登录失败" toView:self.view];
                 }
+            } failure:^(id  _Nonnull error) {
                 
-            } FailedBlock:^(id  _Nonnull error) {
-                NSLog(@"%@",error);
-                [MBProgressHUD showMessage:@"登录失败" toView:self.view];
             }];
             
         }
@@ -94,7 +91,7 @@
             self.loginVC.loginButton.backgroundColor = UICOLOR_FROM_HEX(0x4768f3);
             //self.loginVC.regButton.hidden = NO;
             self.loginVC.forgetPasswordButton.hidden = NO;
-            [self.loginVC.loginButton setTitle:@"登  录 / 注  册" forState:UIControlStateNormal];
+            [self.loginVC.loginButton setTitle:@"登  录" forState:UIControlStateNormal];
         }else{
             NSLog(@"开启了本地登录");
             self.loginVC.loginButton.backgroundColor = UICOLOR_FROM_HEX(0xeb6805);

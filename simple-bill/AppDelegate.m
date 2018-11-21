@@ -31,7 +31,7 @@
     self.window.backgroundColor = UICOLOR_FROM_HEX(0xfefefe);
     LoginViewController *login = [LoginViewController new];
     BaseTabBarController *tabVC = [BaseTabBarController new];
-    if(IsStrEmpty([UserDefaults() objectForKey:@"phone"]) && IsStrEmpty([UserDefaults() objectForKey:@"user_id"])){
+    if(IsStrEmpty([UserDefaults() objectForKey:@"user_phone"]) && IsStrEmpty([UserDefaults() objectForKey:@"u_id"])){
         [UserDefaults() setObject:@"no" forKey:@"login"];
         [UserDefaults() synchronize];
     }

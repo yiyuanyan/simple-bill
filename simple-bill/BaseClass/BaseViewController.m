@@ -58,23 +58,7 @@
     }
     
 }*/
-//更新token
-+ (void) getNewToken:(NSString *)userPhone userPwd:(NSString *)userPwd {
-    
-    NSString *url = [NSString stringWithFormat:@"%@%@/%@",UPDATE_TOKEN,userPhone,userPwd];
-    NSLog(@"更新TOKEN请求：%@",url);
-    [HttpTools PostHttpDataWithUrlStr:url SuccessBlock:^(id  _Nonnull responseObject) {
-        if([responseObject[@"status"] intValue] == 1){
-            NSDictionary *dic = responseObject[@"data"];
-            [UserDefaults() setObject:[NSString stringWithFormat:@"%@",dic[@"token"]] forKey:@"user_token"];
-            [UserDefaults() setObject:[NSString stringWithFormat:@"%@",dic[@"token_time_out"]] forKey:@"token_time_out"];
-            [UserDefaults() synchronize];
-            NSLog(@"Token更新成功：%@",dic[@"token"]);
-        }
-    } FailedBlock:^(id  _Nonnull error) {
-       
-    }];
-}
+
 + (int )getNowTimeTimestamp{
     NSDate *nowDate = [NSDate date];
     NSDateFormatter *dateFomatter = [[NSDateFormatter alloc] init];
