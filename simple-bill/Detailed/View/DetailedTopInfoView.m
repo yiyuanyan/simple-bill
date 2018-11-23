@@ -114,11 +114,12 @@
 {
     self.yearTitleLabel.font = SystemFont(14);
     self.yearTitleLabel.textColor = UICOLOR_FROM_HEX(0x333333);
-    self.yearTitleLabel.text = currentYear;
+    self.yearTitleLabel.text = [NSString stringWithFormat:@"%@年",currentYear];
 }
 -(void)setCurrentMonth:(NSString *)currentMonth {
     if(!IsStrEmpty(currentMonth)){
-        NSMutableAttributedString *month = [self stringAttribute:currentMonth rangeString:@"月" font:Font(24)];
+        NSString *m = [NSString stringWithFormat:@"%@月",currentMonth];
+        NSMutableAttributedString *month = [self stringAttribute:m rangeString:@"月" font:Font(24)];
         self.monthLabel.textColor = UICOLOR_FROM_HEX(0x000000);
         self.monthLabel.attributedText = month;
     }

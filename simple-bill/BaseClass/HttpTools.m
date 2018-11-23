@@ -94,7 +94,7 @@
                     [MBProgressHUD hideHUDForView:viewController.view];
                     NSDictionary *dic = responseObject;
                     if([dic[@"status"] intValue] == 1){
-                        success(responseObject[@"data"]);
+                        success(responseObject);
                         NSLog(@"%@-GET请求地址:\n%@---success日志：\n%@",[viewController class],url,responseObject);
                     }else if([dic[@"dataus"] intValue] == 99){
                         //TOKEN过期
@@ -114,7 +114,7 @@
                     NSLog(@"%@-POST请求地址:\n%@---success日志：\n%@",[viewController class],url,responseObject);
                     NSDictionary *dic = responseObject;
                     if([dic[@"status"] intValue] == 1){
-                        success(responseObject[@"data"]);
+                        success(responseObject);
                         
                     }else if([dic[@"status"] intValue] == 99){
                         NSLog(@"%@-POST请求：\n%@----TOKEN已过期：\n%@",[viewController class],url,responseObject);
@@ -125,6 +125,10 @@
                         [MBProgressHUD hideHUDForView:viewController.view];
                         [MBProgressHUD showMessage:responseObject[@"msg"] toView:viewController.view];
                         return;
+                    }else{
+                        NSLog(@"%@-POST请求地址:\n%@---其他错误：\n%@",[viewController class],url,responseObject);
+                        [MBProgressHUD hideHUDForView:viewController.view];
+                        [MBProgressHUD showMessage:responseObject[@"msg"] toView:viewController.view];
                     }
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                     failure(error);

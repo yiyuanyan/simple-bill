@@ -21,6 +21,7 @@
 		35AE8FCF216B0C6500249E40 /* MBProgressHUD+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AE8FCC216B0C6500249E40 /* MBProgressHUD+Extension.m */; };
 		35AE8FD0216B0C6500249E40 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 35AE8FCD216B0C6500249E40 /* MBProgressHUD.bundle */; };
 		35AE8FD4216B107B00249E40 /* BaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AE8FD3216B107B00249E40 /* BaseTabBarController.m */; };
+		35B1EB0121A793B900630A5D /* DetailedDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B1EB0021A793B900630A5D /* DetailedDatePickerView.m */; };
 		35DCD6182186ED1E0011A501 /* DetailedCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DCD6172186ED1E0011A501 /* DetailedCellModel.m */; };
 		35FE1E3E216AF2DE00488071 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35FE1E3D216AF2DE00488071 /* AppDelegate.m */; };
 		35FE1E44216AF2DE00488071 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35FE1E42216AF2DE00488071 /* Main.storyboard */; };
@@ -86,6 +87,8 @@
 		35AE8FD1216B0F8A00249E40 /* AppInformation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppInformation.h; sourceTree = "<group>"; };
 		35AE8FD2216B107B00249E40 /* BaseTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTabBarController.h; sourceTree = "<group>"; };
 		35AE8FD3216B107B00249E40 /* BaseTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTabBarController.m; sourceTree = "<group>"; };
+		35B1EAFF21A793B900630A5D /* DetailedDatePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailedDatePickerView.h; sourceTree = "<group>"; };
+		35B1EB0021A793B900630A5D /* DetailedDatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailedDatePickerView.m; sourceTree = "<group>"; };
 		35DCD6162186ED1E0011A501 /* DetailedCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailedCellModel.h; sourceTree = "<group>"; };
 		35DCD6172186ED1E0011A501 /* DetailedCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailedCellModel.m; sourceTree = "<group>"; };
 		35EE6E1D216B089F00AC3718 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -323,6 +326,8 @@
 				3530B80C217DCC9F008E6743 /* DetailedCell.m */,
 				35664CEF217EB7DA006A9CE3 /* DetailedTableHeaderView.h */,
 				35664CF0217EB7DA006A9CE3 /* DetailedTableHeaderView.m */,
+				35B1EAFF21A793B900630A5D /* DetailedDatePickerView.h */,
+				35B1EB0021A793B900630A5D /* DetailedDatePickerView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -745,6 +750,7 @@
 				35AE8FD4216B107B00249E40 /* BaseTabBarController.m in Sources */,
 				35664CF1217EB7DA006A9CE3 /* DetailedTableHeaderView.m in Sources */,
 				35231141216C3D7F00D277E5 /* BaseViewController.m in Sources */,
+				35B1EB0121A793B900630A5D /* DetailedDatePickerView.m in Sources */,
 				3523114A216C3DCB00D277E5 /* ChartController.m in Sources */,
 				35231144216C3D9E00D277E5 /* BaseNavigationController.m in Sources */,
 				3530B80D217DCC9F008E6743 /* DetailedCell.m in Sources */,
