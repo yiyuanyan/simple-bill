@@ -11,12 +11,14 @@
 #import "ScrollView.h"
 #import "ExpenditureViewController.h"  //支出View控制器
 #import "IncomeViewController.h"    //收入View控制器
-
+#import "CollectionModel.h"
 @interface AccountsController ()<UIScrollViewDelegate>
 @property(nonatomic, strong)ScrollView *scrollView;
 @property(nonatomic, strong) ExpenditureViewController *expenditureView; //支出View
 @property(nonatomic, strong) IncomeViewController *incomeView;   //收入view
 @property(nonatomic, strong) AccountsTopView *topView;
+@property(nonatomic, strong) NSMutableArray *expArray;  //支出模型数据
+@property(nonatomic, strong) NSMutableArray *incomArray;  //收入模型数据
 @end
 
 @implementation AccountsController
@@ -26,12 +28,33 @@
     self.navigationController.toolbarHidden = YES;
     [self.navigationController setNavigationBarHidden:YES animated:nil];
     self.view.backgroundColor = UICOLOR_RANDOM_COLOR();
+    [self getCategoryList];
     [self initTopView];
     [self topButtonAction];
-    //创建scrollView
-    [self initScrollView];
+    
 
     // Do any additional setup after loading the view.
+}
+- (void)getCategoryList{
+    NSString *url = [NSString stringWithFormat:@"%@category/",BASE_URL];
+    [[HttpTools share] sendPostRequestWithPath:url isLoginOrRegister:NO viewController:self success:^(id  _Nonnull responseObject) {
+        NSMutableArray *mExpArray = [NSMutableArray array];  //支出
+        NSMutableArray *mIncomArray = [NSMutableArray array];  //收入
+        for (NSDictionary *dic in responseObject[@"data"]) {
+            if([dic[@"type"] intValue] == 1){
+                CollectionModel *model = [CollectionModel yy_modelWithJSON:dic];
+                [mExpArray addObject:model];
+            }else if([dic[@"type"] intValue] == 2){
+                CollectionModel *model = [CollectionModel yy_modelWithJSON:dic];
+                [mIncomArray addObject:model];
+            }
+        }
+        //创建scrollView
+        [self initScrollView:mExpArray incomModelArray:mIncomArray];
+        [MBProgressHUD hideHUDForView:self.view];
+    } failure:^(id  _Nonnull error) {
+        
+    }];
 }
 - (void)initTopView{
     self.topView = [AccountsTopView new];
@@ -68,18 +91,21 @@
     }];
 }
 #pragma mark  -- 创建ScrollView
-- (void)initScrollView {
-    self.scrollView = [[ScrollView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, self.view.frame.size.width, self.view.frame.size.height-NAVIGATION_BAR_HEIGHT-TAB_BAR_HEIGHT)];
+- (void)initScrollView:(NSArray *)expModelArray incomModelArray:(NSArray *)incomModelArray {
+    self.scrollView = [[ScrollView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, self.view.frame.size.width, self.view.frame.size.height-TAB_BAR_HEIGHT)];
     self.scrollView.delegate = self;
     self.scrollView.pagingEnabled = YES;
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * 2, self.scrollView.frame.size.height);
     [self.view addSubview:self.scrollView];
     
-    self.expenditureView = [ExpenditureViewController new];
+    self.expenditureView = [[ExpenditureViewController alloc] init];
+    self.expenditureView.expModelArray = expModelArray;
     [self.expenditureView.view setFrame:CGRectMake(0, 0, SCREEN_WIDTH(), self.scrollView.frame.size.height)];
     [self.scrollView addSubview:self.expenditureView.view];
     
+    
     self.incomeView = [IncomeViewController new];
+    self.incomeView.incomModelArray = incomModelArray;
     [self.incomeView.view setFrame:CGRectMake(self.expenditureView.view.frame.size.width, 0, SCREEN_WIDTH(), self.scrollView.frame.size.height)];
     [self.scrollView addSubview:self.incomeView.view];
     

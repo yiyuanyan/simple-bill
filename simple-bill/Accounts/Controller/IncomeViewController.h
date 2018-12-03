@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface IncomeViewController : UIViewController
-
+@property(nonatomic, strong) NSArray *incomModelArray;
 @end
 
 NS_ASSUME_NONNULL_END
