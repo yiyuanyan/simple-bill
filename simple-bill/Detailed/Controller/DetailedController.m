@@ -26,9 +26,32 @@
 @property(nonatomic, assign) BOOL isShowPicker;  //是否显示时间选择器
 @property(nonatomic, strong) NSArray *pickerYear;  //选择器年份
 @property(nonatomic, strong) NSArray *pickerMonth;  //选择器月份
+@property(nonatomic, strong) NSString *selectYear;  //服务器返回的年份
+@property(nonatomic, strong) NSString *selectMonth;  //服务器返回的月份
 @end
 
 @implementation DetailedController
+- (NSString *)currentYear{
+    if(_currentYear == nil){
+        NSDateComponents *time = [self getcurrentYearMonthDay];
+        _currentYear = [NSString stringWithFormat:@"%ld",(long)[time year]];
+    }
+    return _currentYear;
+}
+- (NSString *)currentMonth{
+    if(_currentMonth == nil){
+        NSDateComponents *time = [self getcurrentYearMonthDay];
+        _currentMonth = [NSString stringWithFormat:@"%ld",(long)[time month]];
+    }
+    return _currentMonth;
+}
+- (NSString *)currentDay {
+    if(_currentDay == nil){
+        NSDateComponents *time = [self getcurrentYearMonthDay];
+        _currentDay = [NSString stringWithFormat:@"%ld",(long)[time day]];
+    }
+    return _currentDay;
+}
 -(NSArray *)pickerYear{
     if(_pickerYear == nil){
         NSDate *date = [NSDate date];
@@ -39,7 +62,7 @@
         NSMutableArray *mArray = [NSMutableArray array];
         for(int i=0;i<5;i++){
             int a = year - (4 - i);
-            [mArray addObject:[NSString stringWithFormat:@"%d年",a]];
+            [mArray addObject:[NSString stringWithFormat:@"%d",a]];
         }
         
         _pickerYear = mArray;
@@ -50,7 +73,7 @@
     if (_pickerMonth == nil) {
         NSMutableArray *mArray = [NSMutableArray array];
         for (int i=1; i<=12; i++) {
-            [mArray addObject:[NSString stringWithFormat:@"%d月",i]];
+            [mArray addObject:[NSString stringWithFormat:@"%d",i]];
         }
         _pickerMonth = mArray;
     }
@@ -59,7 +82,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //获取当前时间
-    [self getcurrentYearMonthDay];
+    //[self getcurrentYearMonthDay];
     //设置顶部视图
     [self setDetailedTopInfoView];
     //tableView
@@ -67,14 +90,11 @@
     self.tableHeaderArray = [NSMutableArray array];
     //初始化TableView
     [self initTableView];
-    //初始化DatePicker
-    //[self initDatePickerView];
     
     //获取网络数据
-    //[self GetHttpInfo:[NSString stringWithFormat:@"%@/detailed/2018-10",BASE_URL]];
-    //[self GetHttpInfo:@"http://yiyuanyan.ecip.net:81/detailed/2018-10"];
     NSString *url = [NSString stringWithFormat:@"%@%@-%@",DETAILET_URL,self.currentYear,self.currentMonth];
-    [self GetHttpInfo:@"http://yiyuanyan.eicp.net:81/detailed/2018-10"];
+    //[self GetHttpInfo:@"http://yiyuanyan.eicp.net:81/detailed/2018-10"];
+    [self GetHttpInfo:url];
     
     
     
@@ -94,6 +114,7 @@
     self.datePickerView.picker.delegate = self;
     self.datePickerView.picker.dataSource = self;
     
+    
     [self.view.window addSubview:self.datePickerView];
     [self.datePickerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view.window);
@@ -102,17 +123,55 @@
     }];
     @weakify(self);
     [[self.datePickerView.confirmButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        NSLog(@"点击了时间选择器的确认按钮");
+        @strongify(self);
+        NSInteger yearRow=[self.datePickerView.picker selectedRowInComponent:0];
+        
+        NSString *yearStr=[self.pickerYear objectAtIndex:yearRow];
+        NSInteger monthRow = [self.datePickerView.picker selectedRowInComponent:1];
+        NSString *monthStr = [self.pickerMonth objectAtIndex:monthRow];
+        
+        NSString *url = [NSString stringWithFormat:@"%@%@-%@",DETAILET_URL,yearStr,monthStr];
+        NSLog(@"点击了时间选择器的确认按钮请求新数据URL:%@",url);
+        [self GetHttpInfo:url];
+        [self unSetDatePickerView];
     }];
     [[self.datePickerView.cancelButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        
         NSLog(@"点击了时间选择器的取消按钮");
+        [self unSetDatePickerView];
     }];
+    
+    for (int i=0; i<self.pickerYear.count; i++) {
+        if(!IsStrEmpty(self.selectYear)){
+            if([[NSString stringWithFormat:@"%@",self.selectYear] isEqualToString:self.pickerYear[i]]){
+                [self.datePickerView.picker selectRow:i inComponent:0 animated:nil];
+            }
+        }else{
+            if([[NSString stringWithFormat:@"%@",self.currentYear] isEqualToString:self.pickerYear[i]]){
+                [self.datePickerView.picker selectRow:i inComponent:0 animated:nil];
+            }
+        }
+    }
+    for (int j=0; j<self.pickerMonth.count; j++) {
+        if(!IsStrEmpty(self.selectMonth)){
+            if([self.pickerMonth[j] isEqualToString:[NSString stringWithFormat:@"%@",self.selectMonth]]){
+                [self.datePickerView.picker selectRow:j inComponent:1 animated:nil];
+            }
+        }else{
+            if([self.pickerMonth[j] isEqualToString:[NSString stringWithFormat:@"%@",self.currentMonth]]){
+                [self.datePickerView.picker selectRow:j inComponent:1 animated:nil];
+            }
+        }
+        
+    }
+    
     
 }
 - (void)unSetDatePickerView {
     NSLog(@"移除时间选择器");
     [self.datePickerView removeFromSuperview];
     [self.backgroundView removeFromSuperview];
+    self.isShowPicker = NO;
 }
 - (void)cancle{
     
@@ -174,15 +233,11 @@
     }];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 5;
+    return self.cellData.count ? self.cellData.count : 0;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(IsArrEmpty(self.cellData)){
-        return 0;
-    }else{
-        return [self.cellData[section] count];
-    }
+    return [self.cellData[section] count] ? [self.cellData[section] count] : 0;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -233,26 +288,46 @@
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     if(component == 0){
-        return self.pickerYear[row];
+        return [NSString stringWithFormat:@"%@年",self.pickerYear[row]];
     }else if(component == 1){
-        return self.pickerMonth[row];
+        return [NSString stringWithFormat:@"%@月",self.pickerMonth[row]];
     }
     return nil;
 }
 #pragma mark --获取当前时间
-- (void)getcurrentYearMonthDay {
+- (NSDateComponents *)getcurrentYearMonthDay {
     NSDate *date = [NSDate date];
     NSCalendar *cal = [NSCalendar currentCalendar];
     unsigned int unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
     NSDateComponents *d = [cal components:unitFlags fromDate:date];
-    self.currentYear = [NSString stringWithFormat:@"%ld",(long)[d year]];
-    self.currentMonth = [NSString stringWithFormat:@"%ld",(long)[d month]];
-    self.currentDay = [NSString stringWithFormat:@"%ld",(long)[d day]];
+    return d;
 }
 #pragma mark --请求网络数据
 -(void)GetHttpInfo:(NSString *)url {
     [MBProgressHUD showLoading:self.view title:@"Loading..."];
     [[HttpTools share] sendPostRequestWithPath:url isLoginOrRegister:NO viewController:self success:^(id  _Nonnull responseObject) {
+        //年月赋值
+        if(!IsStrEmpty(responseObject[@"date"])){
+            NSDictionary *yearAndMonth = [self splitString:responseObject[@"date"] range:@"-"];
+            self.detailedTopInfoView.currentYear = yearAndMonth[@"year"];
+            self.selectYear = yearAndMonth[@"year"];
+            self.detailedTopInfoView.currentMonth = yearAndMonth[@"month"];
+            self.selectMonth = yearAndMonth[@"month"];
+        }else{
+            self.detailedTopInfoView.currentYear = self.currentYear;
+            self.detailedTopInfoView.currentMonth = self.currentMonth;
+        }
+        if(IsArrEmpty(responseObject[@"data"])){
+            [self.tableView setHidden:YES];
+            [MBProgressHUD hideHUDForView:self.view];
+            [MBProgressHUD showMessage:[NSString stringWithFormat:@"选择的%@没有数据",responseObject[@"date"]] toView:self.view];
+            return ;
+        }
+        
+        //收入支出赋值
+        self.detailedTopInfoView.expenditureString = responseObject[@"expenditure"] ? responseObject[@"expenditure"] : @"0.00";
+        self.detailedTopInfoView.incomeString = responseObject[@"income"] ? responseObject[@"income"] : @"0.00";
+        [self.tableView setHidden:NO];
         NSMutableArray *mHeader = [NSMutableArray array];
         NSMutableArray *mCell = [NSMutableArray array];
         for (NSDictionary *dic in responseObject[@"data"]) {
@@ -266,21 +341,9 @@
 
         }
         self.tableHeaderArray = mHeader;
-        
         self.cellData = mCell;
         [self.tableView reloadData];
-        //年月赋值
-        if(!IsStrEmpty(responseObject[@"date"])){
-            NSDictionary *yearAndMonth = [self splitString:responseObject[@"date"] range:@"-"];
-            self.detailedTopInfoView.currentYear = yearAndMonth[@"year"];
-            self.detailedTopInfoView.currentMonth = yearAndMonth[@"month"];
-        }else{
-            self.detailedTopInfoView.currentYear = self.currentYear;
-            self.detailedTopInfoView.currentMonth = self.currentMonth;
-        }
-        //收入支出赋值
-        self.detailedTopInfoView.expenditureString = responseObject[@"expenditure"] ? responseObject[@"expenditure"] : @"0.00";
-        self.detailedTopInfoView.incomeString = responseObject[@"income"] ? responseObject[@"income"] : @"0.00";
+        
         [MBProgressHUD hideHUDForView:self.view];
     } failure:^(id  _Nonnull error) {
         

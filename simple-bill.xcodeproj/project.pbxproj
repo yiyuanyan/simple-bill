@@ -14,15 +14,21 @@
 		3523114D216C3DED00D277E5 /* AccountsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3523114C216C3DED00D277E5 /* AccountsController.m */; };
 		35231150216C3E0900D277E5 /* DiscoveredController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3523114F216C3E0900D277E5 /* DiscoveredController.m */; };
 		35231153216C3E1C00D277E5 /* MyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35231152216C3E1C00D277E5 /* MyController.m */; };
+		3525282A21AE88040048EA8F /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3525282921AE88040048EA8F /* CollectionViewCell.m */; };
 		352D5FD6217982E5000664A9 /* DetailedTopInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 352D5FD5217982E5000664A9 /* DetailedTopInfoView.m */; };
 		3530B80D217DCC9F008E6743 /* DetailedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3530B80C217DCC9F008E6743 /* DetailedCell.m */; };
 		355552002190733800B32515 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 355551FF2190733800B32515 /* LoginView.m */; };
 		35664CF1217EB7DA006A9CE3 /* DetailedTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35664CF0217EB7DA006A9CE3 /* DetailedTableHeaderView.m */; };
+		3573140321AF88A500EE7621 /* ExpenditureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3573140221AF88A500EE7621 /* ExpenditureViewController.m */; };
+		3573140621AF88BB00EE7621 /* IncomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3573140521AF88BB00EE7621 /* IncomeViewController.m */; };
 		35AE8FCF216B0C6500249E40 /* MBProgressHUD+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AE8FCC216B0C6500249E40 /* MBProgressHUD+Extension.m */; };
 		35AE8FD0216B0C6500249E40 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 35AE8FCD216B0C6500249E40 /* MBProgressHUD.bundle */; };
 		35AE8FD4216B107B00249E40 /* BaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AE8FD3216B107B00249E40 /* BaseTabBarController.m */; };
+		35B1701F21AD42C100F07B3D /* ScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B1701E21AD42C100F07B3D /* ScrollView.m */; };
+		35B1702221AD453C00F07B3D /* AccountsTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B1702121AD453C00F07B3D /* AccountsTopView.m */; };
 		35B1EB0121A793B900630A5D /* DetailedDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B1EB0021A793B900630A5D /* DetailedDatePickerView.m */; };
 		35DCD6182186ED1E0011A501 /* DetailedCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DCD6172186ED1E0011A501 /* DetailedCellModel.m */; };
+		35E2FA4B21B11A76000256D7 /* CollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E2FA4A21B11A76000256D7 /* CollectionModel.m */; };
 		35FE1E3E216AF2DE00488071 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35FE1E3D216AF2DE00488071 /* AppDelegate.m */; };
 		35FE1E44216AF2DE00488071 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35FE1E42216AF2DE00488071 /* Main.storyboard */; };
 		35FE1E46216AF2DF00488071 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35FE1E45216AF2DF00488071 /* Assets.xcassets */; };
@@ -73,6 +79,8 @@
 		3523114F216C3E0900D277E5 /* DiscoveredController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoveredController.m; sourceTree = "<group>"; };
 		35231151216C3E1C00D277E5 /* MyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyController.h; sourceTree = "<group>"; };
 		35231152216C3E1C00D277E5 /* MyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyController.m; sourceTree = "<group>"; };
+		3525282821AE88040048EA8F /* CollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
+		3525282921AE88040048EA8F /* CollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
 		352D5FD4217982E5000664A9 /* DetailedTopInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailedTopInfoView.h; sourceTree = "<group>"; };
 		352D5FD5217982E5000664A9 /* DetailedTopInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailedTopInfoView.m; sourceTree = "<group>"; };
 		3530B80B217DCC9F008E6743 /* DetailedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailedCell.h; sourceTree = "<group>"; };
@@ -81,16 +89,26 @@
 		355551FF2190733800B32515 /* LoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		35664CEF217EB7DA006A9CE3 /* DetailedTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailedTableHeaderView.h; sourceTree = "<group>"; };
 		35664CF0217EB7DA006A9CE3 /* DetailedTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailedTableHeaderView.m; sourceTree = "<group>"; };
+		3573140121AF88A500EE7621 /* ExpenditureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpenditureViewController.h; sourceTree = "<group>"; };
+		3573140221AF88A500EE7621 /* ExpenditureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpenditureViewController.m; sourceTree = "<group>"; };
+		3573140421AF88BB00EE7621 /* IncomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IncomeViewController.h; sourceTree = "<group>"; };
+		3573140521AF88BB00EE7621 /* IncomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IncomeViewController.m; sourceTree = "<group>"; };
 		35AE8FCC216B0C6500249E40 /* MBProgressHUD+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Extension.m"; sourceTree = "<group>"; };
 		35AE8FCD216B0C6500249E40 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
 		35AE8FCE216B0C6500249E40 /* MBProgressHUD+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Extension.h"; sourceTree = "<group>"; };
 		35AE8FD1216B0F8A00249E40 /* AppInformation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppInformation.h; sourceTree = "<group>"; };
 		35AE8FD2216B107B00249E40 /* BaseTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTabBarController.h; sourceTree = "<group>"; };
 		35AE8FD3216B107B00249E40 /* BaseTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTabBarController.m; sourceTree = "<group>"; };
+		35B1701D21AD42C100F07B3D /* ScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollView.h; sourceTree = "<group>"; };
+		35B1701E21AD42C100F07B3D /* ScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollView.m; sourceTree = "<group>"; };
+		35B1702021AD453C00F07B3D /* AccountsTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountsTopView.h; sourceTree = "<group>"; };
+		35B1702121AD453C00F07B3D /* AccountsTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountsTopView.m; sourceTree = "<group>"; };
 		35B1EAFF21A793B900630A5D /* DetailedDatePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailedDatePickerView.h; sourceTree = "<group>"; };
 		35B1EB0021A793B900630A5D /* DetailedDatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailedDatePickerView.m; sourceTree = "<group>"; };
 		35DCD6162186ED1E0011A501 /* DetailedCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailedCellModel.h; sourceTree = "<group>"; };
 		35DCD6172186ED1E0011A501 /* DetailedCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailedCellModel.m; sourceTree = "<group>"; };
+		35E2FA4921B11A76000256D7 /* CollectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionModel.h; sourceTree = "<group>"; };
+		35E2FA4A21B11A76000256D7 /* CollectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionModel.m; sourceTree = "<group>"; };
 		35EE6E1D216B089F00AC3718 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		35FE1E39216AF2DE00488071 /* simple-bill.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "simple-bill.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35FE1E3C216AF2DE00488071 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -226,9 +244,9 @@
 		35231133216C3D1000D277E5 /* Accounts */ = {
 			isa = PBXGroup;
 			children = (
+				35A0153221AD1EBB00CED36D /* Model */,
+				35A0153321AD1EBC00CED36D /* View */,
 				35231134216C3D1000D277E5 /* Controller */,
-				35231135216C3D1000D277E5 /* Model */,
-				35231136216C3D1000D277E5 /* View */,
 			);
 			path = Accounts;
 			sourceTree = "<group>";
@@ -238,22 +256,12 @@
 			children = (
 				3523114B216C3DED00D277E5 /* AccountsController.h */,
 				3523114C216C3DED00D277E5 /* AccountsController.m */,
+				3573140421AF88BB00EE7621 /* IncomeViewController.h */,
+				3573140521AF88BB00EE7621 /* IncomeViewController.m */,
+				3573140121AF88A500EE7621 /* ExpenditureViewController.h */,
+				3573140221AF88A500EE7621 /* ExpenditureViewController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		35231135216C3D1000D277E5 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		35231136216C3D1000D277E5 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		35231137216C3D1600D277E5 /* Chart */ = {
@@ -348,6 +356,28 @@
 				355551FF2190733800B32515 /* LoginView.m */,
 				B73883F32193D062006A0B3A /* RegisterView.h */,
 				B73883F42193D062006A0B3A /* RegisterView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		35A0153221AD1EBB00CED36D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				35E2FA4921B11A76000256D7 /* CollectionModel.h */,
+				35E2FA4A21B11A76000256D7 /* CollectionModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		35A0153321AD1EBC00CED36D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				35B1701D21AD42C100F07B3D /* ScrollView.h */,
+				35B1701E21AD42C100F07B3D /* ScrollView.m */,
+				35B1702021AD453C00F07B3D /* AccountsTopView.h */,
+				35B1702121AD453C00F07B3D /* AccountsTopView.m */,
+				3525282821AE88040048EA8F /* CollectionViewCell.h */,
+				3525282921AE88040048EA8F /* CollectionViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -749,6 +779,7 @@
 				3523114D216C3DED00D277E5 /* AccountsController.m in Sources */,
 				35AE8FD4216B107B00249E40 /* BaseTabBarController.m in Sources */,
 				35664CF1217EB7DA006A9CE3 /* DetailedTableHeaderView.m in Sources */,
+				3573140621AF88BB00EE7621 /* IncomeViewController.m in Sources */,
 				35231141216C3D7F00D277E5 /* BaseViewController.m in Sources */,
 				35B1EB0121A793B900630A5D /* DetailedDatePickerView.m in Sources */,
 				3523114A216C3DCB00D277E5 /* ChartController.m in Sources */,
@@ -756,18 +787,23 @@
 				3530B80D217DCC9F008E6743 /* DetailedCell.m in Sources */,
 				B7062AAB218FFC19002F4EFE /* LoginViewController.m in Sources */,
 				B7CAE6B821927F3E00FDB659 /* RegisterViewController.m in Sources */,
+				35B1702221AD453C00F07B3D /* AccountsTopView.m in Sources */,
 				B73883F52193D062006A0B3A /* RegisterView.m in Sources */,
 				35231150216C3E0900D277E5 /* DiscoveredController.m in Sources */,
 				B73883F821942835006A0B3A /* LoginAndRegisterModel.m in Sources */,
 				35AE8FCF216B0C6500249E40 /* MBProgressHUD+Extension.m in Sources */,
 				B737A8502181A52500EE776C /* HttpTools.m in Sources */,
+				35E2FA4B21B11A76000256D7 /* CollectionModel.m in Sources */,
 				35231147216C3DB600D277E5 /* DetailedController.m in Sources */,
+				3573140321AF88A500EE7621 /* ExpenditureViewController.m in Sources */,
 				355552002190733800B32515 /* LoginView.m in Sources */,
+				35B1701F21AD42C100F07B3D /* ScrollView.m in Sources */,
 				35DCD6182186ED1E0011A501 /* DetailedCellModel.m in Sources */,
 				35231153216C3E1C00D277E5 /* MyController.m in Sources */,
 				B7016DE921A29D0700045A26 /* Permissions.m in Sources */,
 				35FE1E4C216AF2DF00488071 /* main.m in Sources */,
 				352D5FD6217982E5000664A9 /* DetailedTopInfoView.m in Sources */,
+				3525282A21AE88040048EA8F /* CollectionViewCell.m in Sources */,
 				35FE1E3E216AF2DE00488071 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

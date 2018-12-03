@@ -7,6 +7,7 @@
 //
 
 #import "HttpTools.h"
+#import "LoginViewController.h"
 @interface HttpTools()
 @property(nonatomic, assign) BOOL isShowMBP;
 @end
@@ -83,6 +84,7 @@
     self.manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",@"charset=utf-8", nil];
     if(isLoginOrRegister == NO){
         //设置header头 注:laravel 不支持下划线_
+        NSLog(@"header头信息：token-----%@\n id-------%@",[UserDefaults() objectForKey:@"user_token"],[UserDefaults() objectForKey:@"u_id"]);
         [self.manager.requestSerializer setValue:[NSString stringWithFormat:@"%@",[UserDefaults() objectForKey:@"user_token"]] forHTTPHeaderField:@"token"];
         [self.manager.requestSerializer setValue:[NSString stringWithFormat:@"%@",[UserDefaults() objectForKey:@"u_id"]] forHTTPHeaderField:@"id"];
     }
@@ -124,7 +126,14 @@
                         NSLog(@"%@-POST请求：\n%@----非法用户：\n%@------Token:\n%@------u_id:\n%@",[viewController class],url,responseObject,[NSString stringWithFormat:@"%@",[UserDefaults() objectForKey:@"user_token"]],[NSString stringWithFormat:@"%@",[UserDefaults() objectForKey:@"u_id"]]);
                         [MBProgressHUD hideHUDForView:viewController.view];
                         [MBProgressHUD showMessage:responseObject[@"msg"] toView:viewController.view];
+                        //[viewController.navigationController pushViewController:[LoginViewController new] animated:NO];
                         return;
+                    }else if([dic[@"status"] intValue] == 2){
+                        if(!IsStrEmpty([UserDefaults() objectForKey:@"user_phone"]) && !IsStrEmpty([UserDefaults() objectForKey:@"user_pwd"])){
+                            [self refreshToken:url method:method viewController:viewController success:success failure:failure];
+                        }else{
+                            [viewController.navigationController pushViewController:[LoginViewController new] animated:NO];
+                        }
                     }else{
                         NSLog(@"%@-POST请求地址:\n%@---其他错误：\n%@",[viewController class],url,responseObject);
                         [MBProgressHUD hideHUDForView:viewController.view];

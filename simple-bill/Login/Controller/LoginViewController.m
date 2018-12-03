@@ -62,12 +62,11 @@
                 if(!IsDicEmpty(responseObject)){
                     //本地缓存用户基本信息
                     [UserDefaults() setObject:@"yes" forKey:@"login"];
-                    [UserDefaults() setObject:responseObject[@"u_id"] forKey:@"u_id"];
-                    [UserDefaults() setObject:responseObject[@"user_phone"] forKey:@"user_phone"];
+                    [UserDefaults() setObject:responseObject[@"data"][@"u_id"] forKey:@"u_id"];
+                    [UserDefaults() setObject:responseObject[@"data"][@"user_phone"] forKey:@"user_phone"];
                     [UserDefaults() setObject:self.loginVC.userPwd.text forKey:@"user_pwd"];
-                    //[UserDefaults() setObject:responseObject[@"user_pwd"] forKey:@"user_pwd"];
-                    [UserDefaults() setObject:responseObject[@"user_token"] forKey:@"user_token"];
-                    [UserDefaults() setObject:responseObject[@"user_nickname"] forKey:@"user_nickname"];
+                    [UserDefaults() setObject:responseObject[@"data"][@"user_token"] forKey:@"user_token"];
+                    [UserDefaults() setObject:responseObject[@"data"][@"user_nickname"] forKey:@"user_nickname"];
                     [UserDefaults() synchronize];
                     [MBProgressHUD hideHUDForView:self.view];
                     BaseTabBarController *tabVC = [BaseTabBarController new];
@@ -75,6 +74,7 @@
                 }else{
                     [MBProgressHUD hideHUDForView:self.view];
                     [MBProgressHUD showMessage:@"登录失败" toView:self.view];
+                    
                 }
             } failure:^(id  _Nonnull error) {
                 

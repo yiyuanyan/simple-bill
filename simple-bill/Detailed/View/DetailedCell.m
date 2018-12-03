@@ -73,7 +73,7 @@
         NSURL *imgURL = [NSURL URLWithString:model.thumb];
         [self.imageView sd_setImageWithURL:imgURL];
     }else{
-        self.iconView.image = [UIImage imageNamed:model.en_name];
+        self.iconView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_",model.en_name]];
     }
     self.cateLabel.text = model.name;
     self.moneyLabel.text = [NSString stringWithFormat:@"%@",model.money];

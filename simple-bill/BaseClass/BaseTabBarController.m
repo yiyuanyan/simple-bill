@@ -33,7 +33,7 @@
 - (void)setupChildControllers {
     [self setupChildNavigationControllerWithClass:[BaseNavigationController class] tabbarImageName:@"activity" rootViewControllerClass:[DetailedController class] tabbarTitle:@"明细"];
     [self setupChildNavigationControllerWithClass:[BaseNavigationController class] tabbarImageName:@"dynamic" rootViewControllerClass:[ChartController class] tabbarTitle:@"图表"];
-    [self setupChildNavigationControllerWithClass:[BaseNavigationController class] tabbarImageName:@"addition" rootViewControllerClass:[AccountsController class] tabbarTitle:@"账单"];
+    [self setupChildNavigationControllerWithClass:[BaseNavigationController class] tabbarImageName:@"addition" rootViewControllerClass:[AccountsController class] tabbarTitle:@"记账"];
     [self setupChildNavigationControllerWithClass:[BaseNavigationController class] tabbarImageName:@"coordinates" rootViewControllerClass:[DiscoveredController class] tabbarTitle:@"发现"];
     [self setupChildNavigationControllerWithClass:[BaseNavigationController class] tabbarImageName:@"addressbook" rootViewControllerClass:[MyController class] tabbarTitle:@"我的"];
 }
