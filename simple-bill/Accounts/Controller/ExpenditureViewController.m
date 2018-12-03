@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor redColor];
+    
     [self.view setFrame:CGRectMake(0, 0, SCREEN_WIDTH(), SCREEN_HEIGHT())];
     
     //创建collectionView
@@ -39,7 +39,7 @@
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    return self.expModelArray.count;
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -47,7 +47,7 @@
     cell.model = self.expModelArray[indexPath.row];
     
     
-    cell.backgroundColor = [UIColor yellowColor];
+    cell.backgroundColor = [UIColor clearColor];
     
     return cell;
 }
@@ -74,14 +74,22 @@
 {
     return 15;
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+//cell点击事件
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.collectionView reloadData];
+    CollectionViewCell * cell = (CollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    
+    //cell.imageBackgroundView.backgroundColor = [UIColor redColor];
+    //选中之后的cell变颜色
+    [self updateCellStatus:cell selected:YES];
+    NSLog(@"被点击了");
 }
-*/
-
+// 改变cell的背景颜色
+-(void)updateCellStatus:(CollectionViewCell *)cell selected:(BOOL)selected
+{
+    cell.imageBackgroundView.backgroundColor = selected ? [UIColor whiteColor]:[UIColor whiteColor];
+    
+    cell.layer.borderWidth = selected ? 0:1.0;
+}
 @end
