@@ -21,22 +21,22 @@
     return self;
 }
 - (void)initCellUI{
-    UIView *imageBackgroundView = [UIView new];
-    imageBackgroundView.backgroundColor = UICOLOR_FROM_HEX(0xf5f5f5);
-    imageBackgroundView.layer.masksToBounds = YES;
-    imageBackgroundView.layer.cornerRadius = LineH(60) / 2;
-    [self addSubview:imageBackgroundView];
-    [imageBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.imageBackgroundView = [UIView new];
+    self.imageBackgroundView.backgroundColor = UICOLOR_FROM_HEX(0xf5f5f5);
+    self.imageBackgroundView.layer.masksToBounds = YES;
+    self.imageBackgroundView.layer.cornerRadius = LineH(50) / 2;
+    [self addSubview:self.imageBackgroundView];
+    [self.imageBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top);
-        make.width.height.mas_equalTo(LineH(60));
+        make.width.height.mas_equalTo(LineH(50));
         make.centerX.equalTo(self.mas_centerX);
     }];
     self.imageView = [[UIImageView alloc] init];
-    [imageBackgroundView addSubview:self.imageView];
+    [self.imageBackgroundView addSubview:self.imageView];
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.width.mas_equalTo(LineH(30));
-        make.centerX.equalTo(imageBackgroundView.mas_centerX);
-        make.centerY.equalTo(imageBackgroundView.mas_centerY);
+        make.height.width.mas_equalTo(LineH(25));
+        make.centerX.equalTo(self.imageBackgroundView.mas_centerX);
+        make.centerY.equalTo(self.imageBackgroundView.mas_centerY);
     }];
     self.categoryName = [UILabel new];
     [self addSubview:self.categoryName];
@@ -54,7 +54,8 @@
         [self.imageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_",model.en_name]]];
     }
     self.categoryName.text = model.name;
-    self.categoryName.font = Font(14);
+    self.categoryName.font = Font(12);
     self.categoryName.textColor = UICOLOR_FROM_HEX(0x333333);
+    self.categoryName.textAlignment = NSTextAlignmentCenter;
 }
 @end

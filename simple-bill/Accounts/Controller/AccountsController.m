@@ -27,7 +27,6 @@
     [super viewDidLoad];
     self.navigationController.toolbarHidden = YES;
     [self.navigationController setNavigationBarHidden:YES animated:nil];
-    self.view.backgroundColor = UICOLOR_RANDOM_COLOR();
     [self getCategoryList];
     [self initTopView];
     [self topButtonAction];

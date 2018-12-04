@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CollectionViewCell : UICollectionViewCell
 @property(nonatomic, strong) CollectionModel *model;
+@property(nonatomic, strong) UIView *imageBackgroundView;
 @end
 
 NS_ASSUME_NONNULL_END
