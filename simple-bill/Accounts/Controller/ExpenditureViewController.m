@@ -98,7 +98,7 @@
     [self.view addSubview:self.inputView];
     [self.inputView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
-        make.height.mas_equalTo(LineH(250));
+        make.height.mas_equalTo(LineH(274));
         make.bottom.equalTo(self.view.mas_bottom).offset(0);
     }];
     NSLog(@"%@",cellModel.id);
