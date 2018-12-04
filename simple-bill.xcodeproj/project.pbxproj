@@ -15,6 +15,7 @@
 		35231150216C3E0900D277E5 /* DiscoveredController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3523114F216C3E0900D277E5 /* DiscoveredController.m */; };
 		35231153216C3E1C00D277E5 /* MyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35231152216C3E1C00D277E5 /* MyController.m */; };
 		3525282A21AE88040048EA8F /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3525282921AE88040048EA8F /* CollectionViewCell.m */; };
+		352A357221B67E4B00E27A8B /* InputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 352A357121B67E4B00E27A8B /* InputView.m */; };
 		352D5FD6217982E5000664A9 /* DetailedTopInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 352D5FD5217982E5000664A9 /* DetailedTopInfoView.m */; };
 		3530B80D217DCC9F008E6743 /* DetailedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3530B80C217DCC9F008E6743 /* DetailedCell.m */; };
 		355552002190733800B32515 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 355551FF2190733800B32515 /* LoginView.m */; };
@@ -81,6 +82,8 @@
 		35231152216C3E1C00D277E5 /* MyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyController.m; sourceTree = "<group>"; };
 		3525282821AE88040048EA8F /* CollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
 		3525282921AE88040048EA8F /* CollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
+		352A357021B67E4B00E27A8B /* InputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputView.h; sourceTree = "<group>"; };
+		352A357121B67E4B00E27A8B /* InputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputView.m; sourceTree = "<group>"; };
 		352D5FD4217982E5000664A9 /* DetailedTopInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailedTopInfoView.h; sourceTree = "<group>"; };
 		352D5FD5217982E5000664A9 /* DetailedTopInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailedTopInfoView.m; sourceTree = "<group>"; };
 		3530B80B217DCC9F008E6743 /* DetailedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailedCell.h; sourceTree = "<group>"; };
@@ -378,6 +381,8 @@
 				35B1702121AD453C00F07B3D /* AccountsTopView.m */,
 				3525282821AE88040048EA8F /* CollectionViewCell.h */,
 				3525282921AE88040048EA8F /* CollectionViewCell.m */,
+				352A357021B67E4B00E27A8B /* InputView.h */,
+				352A357121B67E4B00E27A8B /* InputView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -803,6 +808,7 @@
 				B7016DE921A29D0700045A26 /* Permissions.m in Sources */,
 				35FE1E4C216AF2DF00488071 /* main.m in Sources */,
 				352D5FD6217982E5000664A9 /* DetailedTopInfoView.m in Sources */,
+				352A357221B67E4B00E27A8B /* InputView.m in Sources */,
 				3525282A21AE88040048EA8F /* CollectionViewCell.m in Sources */,
 				35FE1E3E216AF2DE00488071 /* AppDelegate.m in Sources */,
 			);

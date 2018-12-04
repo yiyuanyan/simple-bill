@@ -9,9 +9,12 @@
 #import "ExpenditureViewController.h"
 #import "CollectionViewCell.h"
 #import "CollectionModel.h"
+#import "InputView.h"  //价格输入View
 @interface ExpenditureViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property(nonatomic, strong) UICollectionView *collectionView;
 @property(nonatomic, strong) CollectionViewCell *cell;
+@property(nonatomic, strong) NSIndexPath *selectCellIndexPath;
+@property(nonatomic, strong) InputView *inputView;
 @end
 
 @implementation ExpenditureViewController
@@ -77,19 +80,29 @@
 //cell点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.collectionView reloadData];
-    CollectionViewCell * cell = (CollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    //[self.collectionView reloadData];
+    if(self.selectCellIndexPath != indexPath){
+        CollectionViewCell * cell = (CollectionViewCell *)[collectionView cellForItemAtIndexPath:self.selectCellIndexPath];
+        cell.imageBackgroundView.backgroundColor = UICOLOR_FROM_HEX(0xf5f5f5);
+    }
     
-    //cell.imageBackgroundView.backgroundColor = [UIColor redColor];
-    //选中之后的cell变颜色
-    [self updateCellStatus:cell selected:YES];
+    CollectionViewCell * cell2 = (CollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    cell2.imageBackgroundView.backgroundColor = [UIColor yellowColor];
+    self.selectCellIndexPath = indexPath;
+
+    CollectionModel *cellModel = self.expModelArray[indexPath.row];
+    if(self.inputView != nil){
+        [self.inputView removeFromSuperview];
+    }
+    self.inputView = [InputView new];
+    [self.view addSubview:self.inputView];
+    [self.inputView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(LineH(250));
+        make.bottom.equalTo(self.view.mas_bottom).offset(0);
+    }];
+    NSLog(@"%@",cellModel.id);
     NSLog(@"被点击了");
 }
-// 改变cell的背景颜色
--(void)updateCellStatus:(CollectionViewCell *)cell selected:(BOOL)selected
-{
-    cell.imageBackgroundView.backgroundColor = selected ? [UIColor whiteColor]:[UIColor whiteColor];
-    
-    cell.layer.borderWidth = selected ? 0:1.0;
-}
+
 @end

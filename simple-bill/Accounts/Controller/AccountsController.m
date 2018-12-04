@@ -12,6 +12,7 @@
 #import "ExpenditureViewController.h"  //支出View控制器
 #import "IncomeViewController.h"    //收入View控制器
 #import "CollectionModel.h"
+
 @interface AccountsController ()<UIScrollViewDelegate>
 @property(nonatomic, strong)ScrollView *scrollView;
 @property(nonatomic, strong) ExpenditureViewController *expenditureView; //支出View
@@ -73,6 +74,7 @@
         NSLog(@"点击了支出按钮");
         [UIView animateWithDuration:0.3 animations:^{
             self.topView.markerLine.frame = CGRectMake(0, self.topView.buttonBackgroundView.frame.size.height - 3, LineW(56), 3);
+            self.scrollView.contentOffset = CGPointMake(0, 0);
         }];
     }];
     //收入按钮
@@ -81,6 +83,7 @@
          @strongify(self);
         [UIView animateWithDuration:0.3 animations:^{
             self.topView.markerLine.frame = CGRectMake(self.topView.buttonBackgroundView.frame.size.width - self.topView.markerLine.frame.size.width, self.topView.buttonBackgroundView.frame.size.height - 3, LineW(56), 3);
+            self.scrollView.contentOffset = CGPointMake(SCREEN_WIDTH(), 0);
         }];
     }];
     //取消按钮
