@@ -22,6 +22,7 @@
     //app.statusBarStyle = UIStatusBarStyleLightContent;
     app.statusBarStyle = UIStatusBarStyleDefault;
     app.statusBarHidden = NO;
+    [self initIQKeyboardManager];
     [self initKeyWindow];
     return YES;
 }
@@ -56,7 +57,8 @@
     manager.enable = YES;
     manager.shouldResignOnTouchOutside = YES;
     manager.shouldToolbarUsesTextFieldTintColor = YES;
-    manager.enableAutoToolbar = YES;
+    manager.enableAutoToolbar = NO;
+    [manager setToolbarManageBehaviour:IQAutoToolbarByPosition];
     [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
     
 }

@@ -97,7 +97,9 @@
     self.scrollView = [[ScrollView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, self.view.frame.size.width, self.view.frame.size.height-TAB_BAR_HEIGHT)];
     self.scrollView.delegate = self;
     self.scrollView.pagingEnabled = YES;
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * 2, self.scrollView.frame.size.height);
+    self.scrollView.bounces = NO;
+    self.scrollView.bouncesZoom = NO;
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * 2, 0);
     [self.view addSubview:self.scrollView];
     
     self.expenditureView = [[ExpenditureViewController alloc] init];

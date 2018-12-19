@@ -65,6 +65,7 @@
         make.left.equalTo(self.topInfoView.mas_left).offset(15);
     }];
     self.remarksField = [UITextField new];
+    self.remarksField.tag = 1;
     self.remarksField.placeholder = @"今天的花费在哪儿......";
     self.remarksField.font = Font(12);
     self.remarksField.minimumFontSize = 10;
@@ -79,6 +80,7 @@
     }];
     //金额
     self.moneyField = [UITextField new];
+    self.moneyField.tag = 2;
     self.moneyField.textColor = [UIColor blackColor];
     self.moneyField.font = Font(18);
     self.moneyField.text = @"0.00";
